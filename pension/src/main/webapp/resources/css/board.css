@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+input[type=text],
+input[type=password] {border:1px solid #b5b5b5;border-right-color:#d4d4d4;border-bottom-color:#d4d4d4;padding:10px}
+
+#list table {width:100%;border-collapse:collapse;border-spacing:inherit;border:1px solid #999;border-top-width:2px}
+#list tr {border-bottom:1px solid #e1e1e1}
+#list th, td {padding:15px}
+#list th {text-align:left;font-size:15px;font-weight:400;color:#666}
+#list td {font-size:14px}
+#list a {float:right;margin-top:20px;padding:10px 20px;background:#444;color:#FFF;font-size:16px}
+.btn_confirm {background:#333;color:#FFF;font-size:15px;width:191px;margin-top:10px;padding:8.5px 0;border:none}
+
+#write input {width:100%;margin-bottom:15px}
+#write textarea {width:100%;margin-bottom:15px;padding:10px}
+#write input[type=submit] {width:150px;float:right;padding:10px 0;font-size:15px;background:#555;color:#FFF}
+
+#view .subject {font-size:20px;color:#333;font-weight:400;border:1px solid #e1e1e1;border-top:2px solid #999;border-bottom:none;padding:15px}
+#view .info {border:1px solid #e1e1e1;border-top:none;padding:5px 15px 15px;font-size:14px}
+#view .info span:nth-child(odd) {color:#777;padding-right:5px}
+#view .info span:nth-child(even) {color:#333;margin-right:15px}
+#view .content {font-size:14px;border:1px solid #e1e1e1;border-top:none;padding:20px 15px 70px}
+#view .footer {margin-top:20px}
+#view .management {float:left}
+#view .management a {float:left;padding:10px 15px;margin-right:10px;font-size:15px;background:#333;color:#FFF}
+#view .btn_list {float:right;padding:10px 15px;font-size:15px;background:#333;color:#FFF}
