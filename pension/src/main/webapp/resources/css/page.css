@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.navigation p {margin:40px 0}
+.navigation .subject {display:block;font-weight:bold;font-size:16px;letter-spacing:1px;color:#333}
+.navigation .content {font-size:14px}
+
+.surroundings ul {overflow:hidden;height:100%}
+.surroundings ul li {width:50%;height:100%;float:left;min-height:730px}
+.surroundings ul li .img {min-height:400px;height:20%;width:100%}
+.surroundings ul li .tcont {width:100%;margin:50px 0}
+.surroundings ul li .line {background:url(../img/surroundings/line.png) no-repeat right bottom}
+.surroundings ul li .tcont div {width:530px;margin:0 auto}
+.surroundings ul li .tcont div h4 {color:#292929;font-size:32px;font-weight:lighter;margin-bottom:20px}
+.surroundings ul li .tcont div h4 span {font-size:17px}
+.surroundings ul li .tcont div p {font-size:15px;line-height:1.6em;color:#292929}
+.surroundings ul li.tlst_01 .img {background:url(../img/surroundings/1.jpg) no-repeat 50% 50%;background-size:cover}
+.surroundings ul li.tlst_02 .img {background:url(../img/surroundings/2.jpg) no-repeat 50% 50%;background-size:cover}
+
+.img_wrap img {width:100%}
+
+.guide .tab02 > h3 {font-size:20px;display:block;border-top:1px solid #5f5162;background:#f1f1f1;padding:15px;margin-bottom:20px}
+.guide .tab02 .price {margin:80px 0 70px}
+.guide .tab02 .price h3 {font-size:20px;display:block;border-top:1px solid #5f5162;background:#f1f1f1;padding:15px}
+.guide .tab02 .price ul {margin-top:30px;  margin-left:15px}
+.guide .tab02 .price ul li {line-height:1.5em;color:#4d4d4d;font-size:15px}
+.guide .tab02 .rv_notice {margin:80px 0 70px}
+.guide .tab02 .rv_notice h3 {font-size:20px;display:block;border-top:1px solid #5f5162;background:#f1f1f1;padding:15px}
+.guide .tab02 .rv_notice ul {margin-top:30px;margin-left:15px}
+.guide .tab02 .rv_notice ul li {line-height:1.5em;color:#4d4d4d;font-size:15px}
+.guide .tab02 .refund {margin-bottom:100px}
+.guide .tab02 .refund h3 {font-size:20px;display:block;border-top:1px solid #5f5162;background:#f1f1f1;padding:15px}
+.guide .tab02 .refund h4 {font-size:20px;text-align:left;margin:30px 0 10px}
+.guide .tab02 .refund table {width:100%;margin-top:40px}
+.guide .tab02 .refund table tbody tr {border-bottom:1px solid #c0c0c0}
+.guide .tab02 .refund table thead tr th {padding:10px 0;background:#f1f1f1;border-right:1px solid #c0c0c0;font-weight:normal;font-size:14px}
+.guide .tab02 .refund table thead tr th:nth-child(1) {border-left:1px solid #c0c0c0}
+.guide .tab02 .refund table tbody tr td {text-align:center;padding:10px 0;color:#a45959;font-family:'NanumBarunGothic';font-weight:normal;font-size:14px;border-right:1px solid #c0c0c0}
+.guide .tab02 .refund table tbody tr td:nth-child(1) {border-left:1px solid #c0c0c0}
+.guide .tab02 .refund ul {margin-top:30px;margin-left:15px}
+.guide .tab02 .refund ul li {line-height:1.5em;color:#4d4d4d;font-size:15px}
