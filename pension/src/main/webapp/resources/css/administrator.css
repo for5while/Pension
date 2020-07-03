@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+input[type=text],
+input[type=password] {width:300px;margin:0 auto;margin-bottom:10px;display:block;border:none !important;border-bottom:1px solid #333 !important;padding:10px}
+
+#login {text-align:center}
+#login .btn_login {margin-top:15px;width:300px;padding:15px 0;background:#333;color:#FFF}
