@@ -10,9 +10,10 @@
 <section>
 	<div class="wrap">
 		<div id="login">
-			<form action="<c:url value='/administrator/login' />" method="post">
+			<form action="<c:url value='/administrator/userLogin' />" method="post">
 				<input type="text" name="id" placeholder="아이디" required="required">
 				<input type="password" name="password" placeholder="비밀번호" required="required">
+				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 				<input type="submit" class="btn_login" value="로그인">
 			</form>
 		</div>

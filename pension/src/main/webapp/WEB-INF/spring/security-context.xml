@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>        
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security 
+						http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<sec:http pattern="/resources/**" security="none" />
+	
+	<bean id="customAuthenticationFailureHandler" class="com.pension.handler.AuthenticationFailureHandler" />
+	
+	<sec:http auto-config='true' use-expressions="true">
+		<sec:intercept-url pattern="/" access="permitAll" />
+        <sec:intercept-url pattern="/administrator/login" access="permitAll" />
+        <sec:intercept-url pattern="/reserve/management/**" access="isAuthenticated()" />
+
+		<sec:form-login login-page="/administrator/login"
+                        login-processing-url="/administrator/userLogin"
+                        default-target-url="/"
+                        username-parameter="id" 
+                        password-parameter="password"
+                        authentication-failure-url="/administrator/login?error="
+                        authentication-failure-handler-ref="customAuthenticationFailureHandler" 
+                        always-use-default-target='true' />
+
+	 	<sec:logout invalidate-session="true"
+                    logout-url="/administrator/logout"   
+                    logout-success-url="/administrator/login?logout" />
+	 	
+		<sec:csrf/>
+	</sec:http>
+	
+	<sec:authentication-manager>
+        <sec:authentication-provider>
+            <sec:jdbc-user-service 
+            	data-source-ref="dataSource" 
+				users-by-username-query="SELECT id, password, enabled FROM administrator WHERE id = ?" 
+				authorities-by-username-query="SELECT id, authority FROM authorities WHERE id = ?" 
+			/>
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+    
+</beans>
