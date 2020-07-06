@@ -9,6 +9,7 @@
 	<div class="wrap">
 		<div id="write">
 			<form action="/community/qnaWrite" method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<input type="text" name="name" placeholder="이름" required="required">
 				<input type="password" name="password" placeholder="비밀번호" required="required">
 				<input type="text" name="subject" placeholder="제목" required="required">

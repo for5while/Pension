@@ -9,6 +9,7 @@
 	<div class="wrap">
 		<div id="write">
 			<form action="/community/noticeModify" method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<input type="text" name="subject" placeholder="제목" required="required">
 				<textarea rows="20" name="content" placeholder="글 내용을 입력하세요." required="required"></textarea>
 				<input type="submit" value="글수정">
