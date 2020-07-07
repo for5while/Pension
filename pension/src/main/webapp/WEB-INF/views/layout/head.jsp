@@ -35,11 +35,11 @@
 					<li><a href="${pageContext.request.contextPath}/reserve/confirm">예약 확인</a></li>
 				</ul>
 			</li>
-			<li class="menu"><a href="${pageContext.request.contextPath}/community/notice"><span>COMMUNITY</span></a>
+			<li class="menu"><a href="${pageContext.request.contextPath}/community/list?board=notice"><span>COMMUNITY</span></a>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/community/notice">공지사항</a></li>
-					<li><a href="${pageContext.request.contextPath}/community/qna">문의하기</a></li>
-					<li><a href="${pageContext.request.contextPath}/community/review">숙박후기</a></li>
+					<li><a href="${pageContext.request.contextPath}/community/list?board=notice">공지사항</a></li>
+					<li><a href="${pageContext.request.contextPath}/community/list?board=qna">문의하기</a></li>
+					<li><a href="${pageContext.request.contextPath}/community/list?board=review">숙박후기</a></li>
 				</ul>
 			</li>
 		</ul>
