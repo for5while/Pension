@@ -17,21 +17,15 @@ public class PageVO {
 	}
 	public void setCount(int count) {
 		this.count = count;
-		// setCount() 호출시   pageCount  pageBlock startPage endPage 값 설정
 		init();
 	}
 	public void init() {
-		// 전체 페이지수 구하기    
-		pageCount= count / pageSize + (count%pageSize==0?0:1);
-		// 한화면에 보여줄 페이지 개수
-		pageBlock=10;
-		// 한화면에 보여줄 시작페이지 번호 구하기
-		startPage=(currentPage-1)/pageBlock*pageBlock+1;
-		// 한화면에 보여줄 끝페이지 번호 구하기
-		endPage=startPage+pageBlock-1;
-		if(endPage > pageCount){
-		 	endPage=pageCount;
-		}
+		pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1); // 전체 페이지 수
+		pageBlock = 10; // 한 페이지에 보여줄 페이지 개수
+		startPage = (currentPage - 1) / pageBlock * pageBlock + 1; // 시작 페이지 번호
+		endPage = startPage + pageBlock - 1; // 끝 페이지 번호
+		
+		if(endPage > pageCount) endPage = pageCount;
 	}
 	public int getPageSize() {
 		return pageSize;

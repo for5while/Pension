@@ -8,5 +8,13 @@
 	<insert id="insert">
 		INSERT INTO community_notice(idx, name, password, subject, content, datetime, is_secret) VALUES(#{idx}, #{name}, #{password}, #{subject}, #{content}, #{datetime}, #{is_secret})
 	</insert>
+	
+	<select id="getList" parameterType="hashMap" resultType="com.pension.vo.BoardVO">
+		SELECT * FROM ${board} LIMIT #{pageVO.startRow}, #{pageVO.pageSize}
+	</select>
+	
+	<select id="getWriteCount" resultType="java.lang.Integer">
+		SELECT COUNT(idx) FROM ${board}
+	</select>
 
 </mapper>
