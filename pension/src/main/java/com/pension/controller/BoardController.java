@@ -47,7 +47,7 @@ public class BoardController {
 		model.addAttribute("list", list);
 		model.addAttribute("pageVO", pageVO);
 		
-		return "/community/notice";
+		return "/community/list";
 	}
 	
 	@RequestMapping(value = "/community/noticeView", method = RequestMethod.GET)
@@ -80,11 +80,6 @@ public class BoardController {
 		return "/community/noticeModify";
 	}
 	
-	@RequestMapping(value = "/community/qna", method = RequestMethod.GET)
-	public String qna() {
-		return "/community/qna";
-	}
-	
 	@RequestMapping(value = "/community/qnaWrite", method = RequestMethod.GET)
 	public String qnaWrite() {
 		return "/community/qnaWrite";
@@ -103,11 +98,6 @@ public class BoardController {
 	@RequestMapping(value = "/community/qnaConfirm", method = RequestMethod.GET)
 	public String qnaConfirm() {
 		return "/community/empty/qnaConfirm";
-	}
-	
-	@RequestMapping(value = "/community/review", method = RequestMethod.GET)
-	public String review() {
-		return "/community/review";
 	}
 	
 	@RequestMapping(value = "/community/reviewWrite", method = RequestMethod.GET)

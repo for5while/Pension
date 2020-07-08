@@ -10,7 +10,7 @@
 	</insert>
 	
 	<select id="getList" parameterType="hashMap" resultType="com.pension.vo.BoardVO">
-		SELECT * FROM ${board} LIMIT #{pageVO.startRow}, #{pageVO.pageSize}
+		SELECT * FROM ${board} ORDER BY idx DESC LIMIT #{pageVO.startRow}, #{pageVO.pageSize}
 	</select>
 	
 	<select id="getWriteCount" resultType="java.lang.Integer">
