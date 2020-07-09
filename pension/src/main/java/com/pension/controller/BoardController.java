@@ -6,8 +6,6 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.security.authentication.AuthenticationTrustResolver;
-import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -27,13 +25,53 @@ public class BoardController {
 	@Inject
 	private BoardService boardService;
 	
+	// 게시판 존재 여부 판별
+	public boolean invalidBoard(String board) {
+		if(!board.equals("notice") && !board.equals("qna") && !board.equals("review")) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	@RequestMapping(value = "/community/write", method = RequestMethod.GET)
+	public String write(Model model,
+						@RequestParam(defaultValue = "none") String board) {
+		
+		model.addAttribute("board", board);
+		
+		return "/community/write";
+	}
+	
+	@RequestMapping(value = "/community/write", method = RequestMethod.POST)
+	public String writePost(BoardVO boardVO,
+							HttpSession session,
+							@RequestParam(defaultValue = "none") String board) {
+		
+		// 공지사항 게시판일 때
+		if(board.equals("notice")) {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Object principal = auth.getPrincipal(); // 익명일 경우 'anonymousUser', 아닐 경우 로그인된 객체 리턴
+			
+			// 시큐리티로 인증 받지 못한 사용자인지
+			if(principal.equals("anonymousUser")) {
+				session.setAttribute("error", "글쓰기 권한이 없습니다.");
+				return "/layout/index";
+			}
+		}
+		
+		boardService.insert(board, boardVO);
+		session.setAttribute("message", "글쓰기 완료!");
+		
+		return "redirect:/community/list?board=" + board;
+	}
+	
 	@RequestMapping(value = "/community/list", method = RequestMethod.GET)
 	public String list(Model model, HttpSession session,  
 						@RequestParam(defaultValue = "1") int page, 
 						@RequestParam(defaultValue = "none") String board) {
 		
-		if(!board.equals("notice") && !board.equals("qna") && !board.equals("review")) {
-			
+		if(invalidBoard(board)) {
 			session.setAttribute("error", "존재하지 않는 게시판입니다.");
 			return "/layout/index";
 		}
@@ -60,7 +98,6 @@ public class BoardController {
 							  @RequestParam int page,
 							  @RequestParam Map<String, String> inputPassword) {
 
-		// 시큐리티 인증 객체 가져오기
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Object principal = auth.getPrincipal(); // 익명일 경우 'anonymousUser', 아닐 경우 로그인된 객체 리턴
 		
@@ -84,34 +121,9 @@ public class BoardController {
 		return "/community/noticeView";
 	}
 	
-	@RequestMapping(value = "/community/noticeWrite", method = RequestMethod.GET)
-	public String noticeWrite() {
-		return "/community/noticeWrite";
-	}
-	
-	@RequestMapping(value = "/community/noticeWrite", method = RequestMethod.POST)
-	public String noticeWritePost(BoardVO boardVO, HttpSession session) {
-		AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
-		
-		if(trustResolver.isAnonymous(
-				SecurityContextHolder.getContext().getAuthentication())) { // 익명
-			
-			session.setAttribute("error", "관리자 로그인이 필요합니다.");
-		} else { // 사용자
-			boardService.insert(boardVO);
-		}
-		
-		return "redirect:/community/notice";
-	}
-	
 	@RequestMapping(value = "/community/noticeModify", method = RequestMethod.GET)
 	public String noticeModify() {
 		return "/community/noticeModify";
-	}
-	
-	@RequestMapping(value = "/community/qnaWrite", method = RequestMethod.GET)
-	public String qnaWrite() {
-		return "/community/qnaWrite";
 	}
 	
 	@RequestMapping(value = "/community/qnaModify", method = RequestMethod.GET)
@@ -127,11 +139,6 @@ public class BoardController {
 	@RequestMapping(value = "/community/qnaConfirm", method = RequestMethod.GET)
 	public String qnaConfirm() {
 		return "/community/empty/qnaConfirm";
-	}
-	
-	@RequestMapping(value = "/community/reviewWrite", method = RequestMethod.GET)
-	public String reviewWrite() {
-		return "/community/reviewWrite";
 	}
 	
 	@RequestMapping(value = "/community/reviewModify", method = RequestMethod.GET)

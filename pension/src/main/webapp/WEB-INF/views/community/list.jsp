@@ -73,11 +73,11 @@
 			<c:choose>
 				<c:when test="${board eq 'notice' }">
 					<sec:authorize access="isAuthenticated()">
-						<a class="btn_write" href="<c:url value='/community/noticeWrite' />">글쓰기</a>
+						<a class="btn_write" href="<c:url value='/community/write?board=${board }' />">글쓰기</a>
 					</sec:authorize>
 				</c:when>
 				<c:otherwise>
-					<a class="btn_write" href="<c:url value='/community/noticeWrite' />">글쓰기</a>
+					<a class="btn_write" href="<c:url value='/community/write?board=${board }' />">글쓰기</a>
 				</c:otherwise>
 			</c:choose>
 			

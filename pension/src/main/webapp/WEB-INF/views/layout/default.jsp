@@ -27,13 +27,14 @@
 				
 				if(error != '') {
 					Swal.fire({
+						toast: true,
 						position: 'top-end',
 						type: 'error',
 						icon: 'error',
 						title: error,
 						width: 700,
 						showConfirmButton: false,
-						timer: 1500,
+						timer: 2000,
 						timerProgressBar: true
 					})
 				}
@@ -50,6 +51,7 @@
 				
 				if(message != '') {
 					Swal.fire({
+						toast: true,
 						position: 'top-end',
 						type: 'success',
 						icon: 'success',

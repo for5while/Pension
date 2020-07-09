@@ -21,8 +21,13 @@ public class BoardDAOImpl implements BoardDAO {
 	private static String nameSpace = "com.pension.sqlmap.mappers.boardMapper";
 
 	@Override
-	public void insert(BoardVO boardVO) {
-		sqlSession.insert(nameSpace + ".insert", boardVO);
+	public void insert(String board, BoardVO boardVO) {
+		Map<String, Object> param = new HashMap<>();
+		
+		param.put("board", "community_" + board);
+		param.put("boardVO", boardVO);
+		
+		sqlSession.insert(nameSpace + ".insert", param);
 	}
 
 	@Override

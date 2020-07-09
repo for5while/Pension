@@ -6,7 +6,7 @@
 <mapper namespace="com.pension.sqlmap.mappers.boardMapper">
 
 	<insert id="insert">
-		INSERT INTO community_notice(idx, name, password, subject, content, datetime, is_secret) VALUES(#{idx}, #{name}, #{password}, #{subject}, #{content}, #{datetime}, #{is_secret})
+		INSERT INTO ${board}(idx, name, password, subject, content, datetime, is_secret) VALUES(#{boardVO.idx}, #{boardVO.name}, #{boardVO.password}, #{boardVO.subject}, #{boardVO.content}, #{boardVO.datetime}, #{boardVO.is_secret})
 	</insert>
 	
 	<select id="getList" parameterType="hashMap" resultType="com.pension.vo.BoardVO">

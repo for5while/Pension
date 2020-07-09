@@ -18,14 +18,26 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDAO;
 
 	@Override
-	public void insert(BoardVO boardVO) {
+	public void insert(String board, BoardVO boardVO) {
+		boardVO.setName(boardVO.getName());
+		boardVO.setPassword(boardVO.getPassword());
 		boardVO.setIdx(0);
-		boardVO.setName("관리자");
-		boardVO.setPassword(null);
 		boardVO.setDatetime(new Timestamp(System.currentTimeMillis()));
-		boardVO.setIs_secret(0);
 		
-		boardDAO.insert(boardVO);
+		switch(board) {
+		case "notice":
+			boardVO.setName("관리자");
+			boardVO.setPassword(null);
+			boardVO.setIs_secret(0);
+			break;
+		case "qna":
+			boardVO.setIs_secret(1);
+			break;
+		default:
+			boardVO.setIs_secret(0);
+		}
+		
+		boardDAO.insert(board, boardVO);
 	}
 
 	@Override
