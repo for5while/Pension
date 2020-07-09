@@ -30,8 +30,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> getList(String board, PageVO pageVO) {
-		pageVO.setCurrentPage(Integer.parseInt(pageVO.getPageNum()));
-		pageVO.setStartRow((pageVO.getCurrentPage() - 1) * pageVO.getPageSize());
+		int startRow = (pageVO.getPageNum() - 1) * pageVO.getPageSize();
+		pageVO.setStartRow(startRow);
 		
 		return boardDAO.getList(board, pageVO);
 	}

@@ -1,16 +1,15 @@
 package com.pension.vo;
 
 public class PageVO {
-	private int count;
-	private int pageSize;
-	private String pageNum;
-	private int currentPage;
-	private int startRow;
-	private int endRow;
-	private int pageCount;
-	private int pageBlock;
-	private int startPage;
-	private int endPage;
+	private int count; // 전체 게시글 개수
+	private int pageSize; // 한 페이지에 보여줄 글 개수
+	private int pageNum; // 현재 페이지 번호 (파라미터)
+	private int startRow; // 시작 행 번호
+	private int endRow; // 끝 행 번호
+	private int pageCount; // 전체 페이지 수
+	private int pageBlock; // 한 화면에 보여줄 페이지 개수
+	private int startPage; // 시작 페이지 번호
+	private int endPage; // 끝 페이지 번호
 	
 	public int getCount() {
 		return count;
@@ -22,7 +21,7 @@ public class PageVO {
 	public void init() {
 		pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1); // 전체 페이지 수
 		pageBlock = 10; // 한 페이지에 보여줄 페이지 개수
-		startPage = (currentPage - 1) / pageBlock * pageBlock + 1; // 시작 페이지 번호
+		startPage = (pageNum - 1) / pageBlock * pageBlock + 1; // 시작 페이지 번호
 		endPage = startPage + pageBlock - 1; // 끝 페이지 번호
 		
 		if(endPage > pageCount) endPage = pageCount;
@@ -33,17 +32,11 @@ public class PageVO {
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
-	public String getPageNum() {
+	public int getPageNum() {
 		return pageNum;
 	}
-	public void setPageNum(String pageNum) {
+	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
-	}
-	public int getCurrentPage() {
-		return currentPage;
-	}
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
 	}
 	public int getStartRow() {
 		return startRow;

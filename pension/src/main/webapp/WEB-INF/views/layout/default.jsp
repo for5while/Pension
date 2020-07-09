@@ -13,6 +13,7 @@
 		<link href="//db.onlinewebfonts.com/c/35e5d1a7aa6da471de4cfb4a47ebaca8?family=Futura+Std+Book" rel="stylesheet" type="text/css"/>
 		<script src="<c:url value='/resources/js/jquery-3.4.1.min.js' />"></script>
 		<script src="<c:url value='/resources/js/jquery-ui-1.8.5.min.js' />"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 		<tiles:insertAttribute name="head" />
 		
 		<!-- 에러 세션 -->

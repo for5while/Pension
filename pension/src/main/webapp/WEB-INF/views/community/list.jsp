@@ -77,22 +77,22 @@
 			<!-- 페이징 -->
 			<div class="page_wrap">
 				<c:if test="${pageVO.startPage > pageVO.pageBlock }">
-					<a href="<c:url value='/community/list?board=${board }&page=${pageVO.startPage - pageVO.pageBlock }' />">이전</a>
+					<a class="sequence" href="<c:url value='/community/list?board=${board }&page=${pageVO.startPage - pageVO.pageBlock }' />">이전</a>
 				</c:if>
 				<c:if test="${pageVO.pageCount >= 2 }">
 					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
 						<c:choose>
 							<c:when test="${i eq pageVO.pageNum }">
-								<strong>${i }</strong>
+								<strong class="detail">${i }</strong>
 							</c:when>
 							<c:otherwise>
-								<a href="<c:url value='/community/list?board=${board }&page=${i }' />">${i }</a>
+								<a class="detail" href="<c:url value='/community/list?board=${board }&page=${i }' />">${i }</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 				</c:if>
 				<c:if test="${pageVO.endPage < pageVO.pageCount }">
-					<a href="<c:url value='/community/list?board=${board }&page=${pageVO.startPage + pageVO.pageBlock }' />">다음</a>
+					<a class="sequence" href="<c:url value='/community/list?board=${board }&page=${pageVO.startPage + pageVO.pageBlock }' />">다음</a>
 				</c:if>
 			</div>
 		</div>

@@ -25,8 +25,8 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping(value = "/community/list", method = RequestMethod.GET)
-	public String notice(Model model, HttpSession session,  
-						@RequestParam(defaultValue = "1") String page, 
+	public String list(Model model, HttpSession session,  
+						@RequestParam(defaultValue = "1") int page, 
 						@RequestParam(defaultValue = "none") String board) {
 		
 		if(!board.equals("notice") && !board.equals("qna") && !board.equals("review")) {
