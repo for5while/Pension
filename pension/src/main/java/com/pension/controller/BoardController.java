@@ -1,18 +1,21 @@
 package com.pension.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pension.service.BoardService;
 import com.pension.vo.BoardVO;
@@ -48,6 +51,32 @@ public class BoardController {
 		model.addAttribute("pageVO", pageVO);
 		
 		return "/community/list";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/community/viewConfirm", method = RequestMethod.GET)
+	public String viewConfirm(@RequestParam String board,
+							  @RequestParam int num, 
+							  @RequestParam int page,
+							  @RequestParam Map<String, String> inputPassword) {
+
+		// 시큐리티 인증 객체 가져오기
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Object principal = auth.getPrincipal(); // 익명일 경우 'anonymousUser', 아닐 경우 로그인된 객체 리턴
+		
+		// 시큐리티로 로그인 된 멤버는 패스워드 일치 여부 미확인
+		if(!principal.equals("anonymousUser")) {
+			return "../community/view?board=" + board + "&num=" + num + "&page=" + page;
+		}
+		
+		String contentPassword = boardService.getContentPassword(num);
+		
+		// 입력받은 패스워드와 저장된 글 데이터의 패스워드가 일치한지
+		if(inputPassword.containsValue(contentPassword)) {
+			return "../community/view?board=" + board + "&num=" + num + "&page=" + page;
+		} else {
+			return "diff";
+		}
 	}
 	
 	@RequestMapping(value = "/community/noticeView", method = RequestMethod.GET)

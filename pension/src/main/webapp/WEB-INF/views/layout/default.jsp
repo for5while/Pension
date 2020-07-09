@@ -65,7 +65,7 @@
 			<c:remove var="message" scope="session" />
 		</c:if>
 	</head>
-	<body style="padding-right:0 !important;overflow-x:hidden">
+	<body>
 		<tiles:insertAttribute name="content" />
 		<tiles:insertAttribute name="tail" />
 	</body>

@@ -43,5 +43,10 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectOne(nameSpace + ".getWriteCount", param);
 	}
+
+	@Override
+	public String getContentPassword(int num) {
+		return sqlSession.selectOne(nameSpace + ".getContentPassword", num);
+	}
 	
 }

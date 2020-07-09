@@ -40,5 +40,10 @@ public class BoardServiceImpl implements BoardService {
 	public Integer getWriteCount(String board) {
 		return boardDAO.getWriteCount(board);
 	}
+
+	@Override
+	public String getContentPassword(int num) {
+		return boardDAO.getContentPassword(num);
+	}
 	
 }

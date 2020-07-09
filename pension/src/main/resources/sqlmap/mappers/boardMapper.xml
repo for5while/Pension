@@ -16,5 +16,9 @@
 	<select id="getWriteCount" resultType="java.lang.Integer">
 		SELECT COUNT(idx) FROM ${board}
 	</select>
+	
+	<select id="getContentPassword" resultType="java.lang.String">
+		SELECT password FROM community_qna WHERE idx = #{idx}
+	</select>
 
 </mapper>

@@ -43,7 +43,14 @@
 
 						<tr>
 							<td>${i.idx }</td>
-							<td><a href="<c:url value='/community/view?board=${board }&num=${i.idx }&page=${pageVO.pageNum }' />">${i.subject }</a></td>
+							<c:choose>
+								<c:when test="${board eq 'qna' }">
+									<td class="subject"><a onclick="passwordConfirm('${board }', ${i.idx }, ${pageVO.pageNum });" style="cursor:pointer">${i.subject }</a></td>
+								</c:when>
+								<c:otherwise>
+									<td class="subject"><a href="<c:url value='/community/view?board=${board }&num=${i.idx }&page=${pageVO.pageNum }' />">${i.subject }</a></td>
+								</c:otherwise>
+							</c:choose>
 							<td>${i.name }</td>
 							<td>
 								<c:choose>
@@ -98,3 +105,32 @@
 		</div>
 	</div>
 </section>
+
+<script type="text/javascript">
+function passwordConfirm(board, num, page) {
+	Swal.fire({
+		title: "글 비밀번호를 입력하세요.",
+		input: "password",
+		showCancelButton: true,
+		cancelButtonText: "닫기",
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "확인",
+		preConfirm: (inputPassword) => {
+			$.ajax({
+				url: "../community/viewConfirm?board=" + board + "&num=" + num + "&page=" + page + "&password=" + inputPassword,
+				type: "GET",
+				success: function(data) {
+					if(data == "diff") {
+						Swal.fire("앗!", "비밀번호가 일치하지 않습니다.", "error");
+					} else {
+						location.href = data;
+					}
+				},
+				error: function() {
+					Swal.fire(":(", "지금은 서버와 통신할 수 없습니다.<br>잠시 후 다시 시도해주십시오.", "error");
+				}
+			});
+		}
+	})
+}
+</script>
