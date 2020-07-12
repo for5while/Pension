@@ -13,6 +13,10 @@
 		UPDATE ${board} SET name = #{boardVO.name}, password = #{boardVO.password}, subject = #{boardVO.subject}, content = #{boardVO.content} WHERE idx = #{num}
 	</update>
 	
+	<delete id="delete">
+		DELETE FROM ${board} WHERE idx = #{num}
+	</delete>
+	
 	<select id="getList" parameterType="hashMap" resultType="com.pension.vo.BoardVO">
 		SELECT * FROM ${board} ORDER BY idx DESC LIMIT #{pageVO.startRow}, #{pageVO.pageSize}
 	</select>

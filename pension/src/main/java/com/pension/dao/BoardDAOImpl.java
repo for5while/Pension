@@ -40,6 +40,16 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		sqlSession.insert(nameSpace + ".update", param);
 	}
+	
+	@Override
+	public void delete(String board, int num) {
+		Map<String, Object> param = new HashMap<>();
+		
+		param.put("board", "community_" + board);
+		param.put("num", num);
+		
+		sqlSession.insert(nameSpace + ".delete", param);
+	}
 
 	@Override
 	public List<BoardVO> getList(String board, PageVO pageVO) {

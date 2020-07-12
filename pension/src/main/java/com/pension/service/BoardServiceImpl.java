@@ -54,6 +54,11 @@ public class BoardServiceImpl implements BoardService {
 		
 		boardDAO.update(board, num, boardVO);
 	}
+	
+	@Override
+	public void delete(String board, int num) {
+		boardDAO.delete(board, num);
+	}
 
 	@Override
 	public List<BoardVO> getList(String board, PageVO pageVO) {

@@ -31,14 +31,14 @@
 						<sec:authorize access="isAuthenticated()">
 							<div class="management">
 								<a onclick="passwordConfirm('${board }', ${num }, ${page }, 'modify');" style="background:#2572ff;cursor:pointer">수정</a>
-								<a href="<c:url value='/community/delete?board=${board }&num=${num }' />" style="background:#ff2525">삭제</a>
+								<a onclick="passwordConfirm('${board }', ${num }, ${page }, 'delete');" style="background:#ff2525;cursor:pointer">삭제</a>
 							</div>
 						</sec:authorize>
 					</c:when>
 					<c:otherwise>
 						<div class="management">
 							<a onclick="passwordConfirm('${board }', ${num }, ${page }, 'modify');" style="background:#2572ff;cursor:pointer">수정</a>
-							<a href="<c:url value='/community/delete?board=${board }&num=${num }' />" style="background:#ff2525">삭제</a>
+							<a onclick="passwordConfirm('${board }', ${num }, ${page }, 'delete');" style="background:#ff2525;cursor:pointer">삭제</a>
 						</div>
 					</c:otherwise>
 				</c:choose>
@@ -54,18 +54,34 @@ function passwordConfirm(board, num, page, type) {
 		title: "글 비밀번호를 입력하세요.",
 		input: "password",
 		showCancelButton: true,
-		cancelButtonText: "닫기",
 		confirmButtonColor: "#DD6B55",
 		confirmButtonText: "확인",
+		cancelButtonText: "닫기",
 		preConfirm: (inputPassword) => {
 			$.ajax({
-				url: "../community/modifyConfirm?board=" + board + "&num=" + num + "&page=" + page + "&password=" + inputPassword,
+				url: "../community/" + type + "Confirm?board=" + board + "&num=" + num + "&page=" + page + "&password=" + inputPassword,
 				type: "GET",
 				success: function(data) {
 					if(data == "diff") {
 						Swal.fire("앗!", "비밀번호가 일치하지 않습니다.", "error");
 					} else {
-						location.href = data;
+						if(type == "modify") {
+							location.href = data;
+						} else {
+							Swal.fire({
+								title: "정말 삭제하시겠습니까?",
+								text: "한번 삭제된 글은 다시 복구할 수 없습니다.",
+								icon: "warning",
+								showCancelButton: true,
+								confirmButtonColor: "#DD6B55",
+								confirmButtonText: "삭제",
+								cancelButtonText: "취소",
+							}).then((result) => {
+								if(result.value) {
+									location.href = "../community/delete?board=" + board + "&num=" + num;
+								}
+							})
+						}
 					}
 				},
 				error: function() {

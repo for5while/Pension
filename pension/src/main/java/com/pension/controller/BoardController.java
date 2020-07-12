@@ -236,4 +236,57 @@ public class BoardController {
 		}
 	}
 	
+	@RequestMapping(value = "/community/delete", method = RequestMethod.GET)
+	public String delete(HttpSession session,
+						 @RequestParam String board,
+						 @RequestParam int num) {
+		
+		// 글 비밀번호를 정상 확인받지 않고 넘어왔을 때
+		String deleteBoard = (String) session.getAttribute("delete_board");
+		String deleteNo = (String) session.getAttribute("delete_view");
+		boolean notAccess = false;
+		
+		if(deleteBoard == null || deleteNo == null) {
+			notAccess = true;
+		} else if((!deleteBoard.equals(board)) || (Integer.parseInt(deleteNo) != num)) {
+			notAccess = true;
+		}
+		
+		if(notAccess) {
+			session.setAttribute("error", "글 비밀번호가 정상적으로 확인되지 않았습니다.");
+			return "redirect:/community/view?board=" + board + "&num=" + num;
+		}
+		
+		boardService.delete(board, num);
+		session.setAttribute("message", "글삭제 완료!");
+		
+		return "redirect:/community/list?board=" + board;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/community/deleteConfirm", method = RequestMethod.GET)
+	public String deleteConfirm(HttpSession session,
+								@RequestParam String board,
+								@RequestParam int num,
+								@RequestParam int page,
+								@RequestParam Map<String, String> inputPassword) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Object principal = auth.getPrincipal(); // 익명일 경우 'anonymousUser', 아닐 경우 로그인된 객체 리턴
+		
+		String contentPassword = boardService.getContentPassword(board, num);
+		
+		// 입력받은 패스워드와 저장된 글 데이터의 패스워드가 일치한지 or 시큐리티로 로그인 되어있는지
+		if(inputPassword.containsValue(contentPassword) || !principal.equals("anonymousUser")) {
+			
+			// 이 세션으로 삭제 파라미터 조작 방지
+			session.setAttribute("delete_board", board);
+			session.setAttribute("delete_view", num + ""); // String으로 형변환
+			
+			return null;
+		} else {
+			return "diff";
+		}
+	}
+	
 }
