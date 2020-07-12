@@ -57,5 +57,10 @@ public class BoardServiceImpl implements BoardService {
 	public String getContentPassword(int num) {
 		return boardDAO.getContentPassword(num);
 	}
+
+	@Override
+	public BoardVO getContent(String board, int num) {
+		return boardDAO.getContent(board, num);
+	}
 	
 }

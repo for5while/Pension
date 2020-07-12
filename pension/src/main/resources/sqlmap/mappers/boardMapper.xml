@@ -20,5 +20,9 @@
 	<select id="getContentPassword" resultType="java.lang.String">
 		SELECT password FROM community_qna WHERE idx = #{idx}
 	</select>
+	
+	<select id="getContent" resultType="com.pension.vo.BoardVO">
+		SELECT * FROM ${board} WHERE idx = #{num}
+	</select>
 
 </mapper>

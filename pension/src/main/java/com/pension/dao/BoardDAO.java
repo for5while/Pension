@@ -10,4 +10,5 @@ public interface BoardDAO {
 	public List<BoardVO> getList(String board, PageVO pageVO);
 	public Integer getWriteCount(String board);
 	public String getContentPassword(int num);
+	public BoardVO getContent(String board, int num);
 }

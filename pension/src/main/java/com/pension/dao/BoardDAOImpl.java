@@ -53,5 +53,15 @@ public class BoardDAOImpl implements BoardDAO {
 	public String getContentPassword(int num) {
 		return sqlSession.selectOne(nameSpace + ".getContentPassword", num);
 	}
+
+	@Override
+	public BoardVO getContent(String board, int num) {
+		Map<Object, Object> param = new HashMap<>();
+		
+		param.put("board", "community_" + board);
+		param.put("num", num);
+		
+		return sqlSession.selectOne(nameSpace + ".getContent", param);
+	}
 	
 }

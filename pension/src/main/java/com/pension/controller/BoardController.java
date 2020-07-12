@@ -68,8 +68,8 @@ public class BoardController {
 	
 	@RequestMapping(value = "/community/list", method = RequestMethod.GET)
 	public String list(Model model, HttpSession session,  
-						@RequestParam(defaultValue = "1") int page, 
-						@RequestParam(defaultValue = "none") String board) {
+					   @RequestParam(defaultValue = "1") int page, 
+					   @RequestParam(defaultValue = "none") String board) {
 		
 		if(invalidBoard(board)) {
 			session.setAttribute("error", "존재하지 않는 게시판입니다.");
@@ -91,9 +91,45 @@ public class BoardController {
 		return "/community/list";
 	}
 	
+	@RequestMapping(value = "/community/view", method = RequestMethod.GET)
+	public String view(Model model,
+					   HttpSession session,
+					   @RequestParam String board,
+					   @RequestParam int page,
+					   @RequestParam int num) {
+		
+		// 글 비밀번호를 정상 확인받지 않고 넘어왔을 때
+		if(board.equals("qna")) {
+			String secretBoard = (String) session.getAttribute("secret_board");
+			String secretNo = (String) session.getAttribute("secret_view");
+			boolean notAccess = false;
+			
+			if(secretBoard == null || secretNo == null) {
+				notAccess = true;
+			} else if((!secretBoard.equals(board)) || (Integer.parseInt(secretNo) != num)) {
+				notAccess = true;
+			}
+			
+			if(notAccess) {
+				session.setAttribute("error", "글 비밀번호가 정상적으로 확인되지 않았습니다.");
+				return "redirect:/community/list?board=" + board + "&page=" + page;
+			}
+		}
+		
+		BoardVO boardVO = boardService.getContent(board, num);
+		
+		model.addAttribute("board", board);
+		model.addAttribute("page", page);
+		model.addAttribute("num", num);
+		model.addAttribute("boardVO", boardVO);
+		
+		return "/community/view";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/community/viewConfirm", method = RequestMethod.GET)
-	public String viewConfirm(@RequestParam String board,
+	public String viewConfirm(HttpSession session,
+							  @RequestParam String board,
 							  @RequestParam int num, 
 							  @RequestParam int page,
 							  @RequestParam Map<String, String> inputPassword) {
@@ -110,45 +146,20 @@ public class BoardController {
 		
 		// 입력받은 패스워드와 저장된 글 데이터의 패스워드가 일치한지
 		if(inputPassword.containsValue(contentPassword)) {
+			
+			// 이 세션으로 뷰 페이지 파라미터 조작 방지
+			session.setAttribute("secret_board", board);
+			session.setAttribute("secret_view", num + ""); // String으로 형변환
+			
 			return "../community/view?board=" + board + "&num=" + num + "&page=" + page;
 		} else {
 			return "diff";
 		}
 	}
 	
-	@RequestMapping(value = "/community/noticeView", method = RequestMethod.GET)
-	public String noticeView() {
-		return "/community/noticeView";
-	}
-	
-	@RequestMapping(value = "/community/noticeModify", method = RequestMethod.GET)
-	public String noticeModify() {
-		return "/community/noticeModify";
-	}
-	
-	@RequestMapping(value = "/community/qnaModify", method = RequestMethod.GET)
-	public String qnaModify() {
-		return "/community/qnaModify";
-	}
-	
-	@RequestMapping(value = "/community/qnaView", method = RequestMethod.GET)
-	public String qnaView() {
-		return "/community/qnaView";
-	}
-	
-	@RequestMapping(value = "/community/qnaConfirm", method = RequestMethod.GET)
-	public String qnaConfirm() {
-		return "/community/empty/qnaConfirm";
-	}
-	
-	@RequestMapping(value = "/community/reviewModify", method = RequestMethod.GET)
-	public String reviewModify() {
-		return "/community/reviewModify";
-	}
-	
-	@RequestMapping(value = "/community/reviewView", method = RequestMethod.GET)
-	public String reviewView() {
-		return "/community/reviewView";
+	@RequestMapping(value = "/community/modify", method = RequestMethod.GET)
+	public String modify() {
+		return "/community/modify";
 	}
 	
 }
