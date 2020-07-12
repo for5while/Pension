@@ -9,6 +9,10 @@
 		INSERT INTO ${board}(idx, name, password, subject, content, datetime, is_secret) VALUES(#{boardVO.idx}, #{boardVO.name}, #{boardVO.password}, #{boardVO.subject}, #{boardVO.content}, #{boardVO.datetime}, #{boardVO.is_secret})
 	</insert>
 	
+	<update id="update">
+		UPDATE ${board} SET name = #{boardVO.name}, password = #{boardVO.password}, subject = #{boardVO.subject}, content = #{boardVO.content} WHERE idx = #{num}
+	</update>
+	
 	<select id="getList" parameterType="hashMap" resultType="com.pension.vo.BoardVO">
 		SELECT * FROM ${board} ORDER BY idx DESC LIMIT #{pageVO.startRow}, #{pageVO.pageSize}
 	</select>
@@ -18,7 +22,7 @@
 	</select>
 	
 	<select id="getContentPassword" resultType="java.lang.String">
-		SELECT password FROM community_qna WHERE idx = #{idx}
+		SELECT password FROM ${board} WHERE idx = #{num}
 	</select>
 	
 	<select id="getContent" resultType="com.pension.vo.BoardVO">

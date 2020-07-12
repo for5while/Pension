@@ -7,8 +7,9 @@ import com.pension.vo.PageVO;
 
 public interface BoardDAO {
 	public void insert(String board, BoardVO boardVO);
+	public void update(String board, int num, BoardVO boardVO);
 	public List<BoardVO> getList(String board, PageVO pageVO);
 	public Integer getWriteCount(String board);
-	public String getContentPassword(int num);
+	public String getContentPassword(String board, int num);
 	public BoardVO getContent(String board, int num);
 }

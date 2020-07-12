@@ -41,6 +41,21 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public void update(String board, int num, BoardVO boardVO) {
+		boardVO.setName(boardVO.getName());
+		boardVO.setPassword(boardVO.getPassword());
+		boardVO.setSubject(boardVO.getSubject());
+		boardVO.setContent(boardVO.getContent());
+		
+		if(board.equals("notice")) {
+			boardVO.setName("관리자");
+			boardVO.setPassword(null);
+		}
+		
+		boardDAO.update(board, num, boardVO);
+	}
+
+	@Override
 	public List<BoardVO> getList(String board, PageVO pageVO) {
 		int startRow = (pageVO.getPageNum() - 1) * pageVO.getPageSize();
 		pageVO.setStartRow(startRow);
@@ -54,8 +69,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public String getContentPassword(int num) {
-		return boardDAO.getContentPassword(num);
+	public String getContentPassword(String board, int num) {
+		return boardDAO.getContentPassword(board, num);
 	}
 
 	@Override

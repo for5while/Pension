@@ -137,15 +137,10 @@ public class BoardController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Object principal = auth.getPrincipal(); // 익명일 경우 'anonymousUser', 아닐 경우 로그인된 객체 리턴
 		
-		// 시큐리티로 로그인 된 멤버는 패스워드 일치 여부 미확인
-		if(!principal.equals("anonymousUser")) {
-			return "../community/view?board=" + board + "&num=" + num + "&page=" + page;
-		}
+		String contentPassword = boardService.getContentPassword(board, num);
 		
-		String contentPassword = boardService.getContentPassword(num);
-		
-		// 입력받은 패스워드와 저장된 글 데이터의 패스워드가 일치한지
-		if(inputPassword.containsValue(contentPassword)) {
+		// 입력받은 패스워드와 저장된 글 데이터의 패스워드가 일치한지 or 시큐리티로 로그인 되어있는지
+		if(inputPassword.containsValue(contentPassword) || !principal.equals("anonymousUser")) {
 			
 			// 이 세션으로 뷰 페이지 파라미터 조작 방지
 			session.setAttribute("secret_board", board);
@@ -158,8 +153,87 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/community/modify", method = RequestMethod.GET)
-	public String modify() {
+	public String modify(Model model,
+						 HttpSession session,
+						 @RequestParam String board,
+						 @RequestParam int page,
+						 @RequestParam int num) {
+		
+		// 글 비밀번호를 정상 확인받지 않고 넘어왔을 때
+		String modifyBoard = (String) session.getAttribute("modify_board");
+		String modifyNo = (String) session.getAttribute("modify_view");
+		boolean notAccess = false;
+		
+		if(modifyBoard == null || modifyNo == null) {
+			notAccess = true;
+		} else if((!modifyBoard.equals(board)) || (Integer.parseInt(modifyNo) != num)) {
+			notAccess = true;
+		}
+		
+		if(notAccess) {
+			session.setAttribute("error", "글 비밀번호가 정상적으로 확인되지 않았습니다.");
+			return "redirect:/community/view?board=" + board + "&num=" + num + "&page=" + page;
+		}
+		
+		BoardVO boardVO = boardService.getContent(board, num);
+		
+		model.addAttribute("board", board);
+		model.addAttribute("page", page);
+		model.addAttribute("num", num);
+		model.addAttribute("boardVO", boardVO);
+		
 		return "/community/modify";
+	}
+	
+	@RequestMapping(value = "/community/modify", method = RequestMethod.POST)
+	public String modifyPost(BoardVO boardVO,
+							 HttpSession session,
+							 @RequestParam String board,
+							 @RequestParam int num,
+							 @RequestParam int page) {
+		
+		// 공지사항 게시판일 때
+		if(board.equals("notice")) {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Object principal = auth.getPrincipal(); // 익명일 경우 'anonymousUser', 아닐 경우 로그인된 객체 리턴
+			
+			// 시큐리티로 인증 받지 못한 사용자인지
+			if(principal.equals("anonymousUser")) {
+				session.setAttribute("error", "글수정 권한이 없습니다.");
+				return "/layout/index";
+			}
+		}
+		
+		boardService.update(board, num, boardVO);
+		session.setAttribute("message", "글수정 완료!");
+		
+		return "redirect:/community/view?board=" + board + "&num=" + num + "&page=" + page;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/community/modifyConfirm", method = RequestMethod.GET)
+	public String modifyConfirm(HttpSession session,
+								@RequestParam String board,
+								@RequestParam int num,
+								@RequestParam int page,
+								@RequestParam Map<String, String> inputPassword) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Object principal = auth.getPrincipal(); // 익명일 경우 'anonymousUser', 아닐 경우 로그인된 객체 리턴
+		
+		String contentPassword = boardService.getContentPassword(board, num);
+		
+		// 입력받은 패스워드와 저장된 글 데이터의 패스워드가 일치한지 or 시큐리티로 로그인 되어있는지
+		if(inputPassword.containsValue(contentPassword) || !principal.equals("anonymousUser")) {
+			
+			// 이 세션으로 뷰 페이지 파라미터 조작 방지
+			session.setAttribute("modify_board", board);
+			session.setAttribute("modify_view", num + ""); // String으로 형변환
+			
+			return "../community/modify?board=" + board + "&num=" + num + "&page=" + page;
+		} else {
+			return "diff";
+		}
 	}
 	
 }
