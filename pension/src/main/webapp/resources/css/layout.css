@@ -61,7 +61,7 @@ input, textarea, select {border:1px solid #b5b5b5;border-right-color:#d4d4d4;bor
 section {width:1280px;min-height:100vh;margin:0 auto}
 section .wrap {width:1280px;overflow:hidden;float:left;margin-bottom:90px}
 
-#bottom {position:relative;overflow:hidden;min-width:1280px;width:100%;height:150px;background:#333c4b;box-shadow:0 0 5px 1px #6b6b6b}
+#bottom {position:relative;overflow:hidden;min-width:1280px;width:100%;height:150px;border-top:1px solid #00406f;background-color:#7f5a83;background-image:linear-gradient(315deg, #7f5a83 0%, #0d324d 74%)}
 #bottom .wrap {width:1280px;margin:0 auto;padding:30px 0}
 #bottom .subject {width:100%;font-size:20px;color:#9da8bb;margin-bottom:20px}
-#bottom .content {float:left;width:340px;color:#FFF}
+#bottom .content {float:left;width:320px;color:#FFF;font-size:13px}
