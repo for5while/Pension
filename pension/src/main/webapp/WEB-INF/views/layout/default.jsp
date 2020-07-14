@@ -10,6 +10,7 @@
 		<link href="<c:url value='/resources/css/layout.css' />" rel="stylesheet" type="text/css" />
 		<link href="<c:url value='/resources/css/page.css' />" rel="stylesheet" type="text/css" />
 		<link href="<c:url value='/resources/css/board.css' />" rel="stylesheet" type="text/css" />
+		<link href="<c:url value='/resources/css/reserve.css' />" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@latest/nanumbarungothicsubset.css">
 		<link href="//db.onlinewebfonts.com/c/35e5d1a7aa6da471de4cfb4a47ebaca8?family=Futura+Std+Book" rel="stylesheet" type="text/css"/>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css">

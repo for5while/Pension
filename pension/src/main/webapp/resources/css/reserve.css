@@ -1,0 +1,59 @@
+@charset "UTF-8";
+@font-face {
+	font-family:'NanumSquareRound';
+	src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+	font-weight:normal;
+	font-style:normal;
+}
+
+section .wrap {margin-bottom:0}
+
+.reserve {font-family:'NanumSquareRound';border:1px solid #dedede;border-width:0 0 1px 1px;margin-bottom:100px}
+.reserve .material-icons {position:relative;top:-2px}
+.reserve .material-icons.left {float:left}
+.reserve .material-icons.margin-left {margin-left:5px}
+.reserve .material-icons.margin-right {margin-right:5px}
+.reserve .material-icons.border {border:1px solid #484848;border-radius:20px}
+
+.reserve .header {position:relative;height:77px;padding:30px;background:url(../img/reserve/calendar_shadow.png) repeat-x;border-right:1px solid #dedede}
+.reserve .header .legend {position:absolute;float:left}
+.reserve .header .legend span {font-weight:bold;font-size:14px;margin-right:15px}
+.reserve .header .legend span:nth-child(1) {color:#000}
+.reserve .header .legend span:nth-child(2) {color:#2c80e5}
+.reserve .header .legend span:nth-child(3) {color:#f05252}
+.reserve .header .date {width:100%;float:left;text-align:center}
+.reserve .header .date .month {position:relative;top:-7px;font-size:20px;font-weight:600;color:#484848}
+.reserve .header .confirm {position:absolute;right:30px}
+.reserve .header .confirm a {color:#828282;font-size:18px;letter-spacing:-1px}
+
+.reserve .week ul {width:100%;display:table;overflow:hidden;border-style:solid;border-width:2px 1px 1px 0;border-color:#566278;border-right-color:#dedede}
+.reserve .week ul li {display:table-cell;width:182px;text-align:center;font-weight:bold;padding:15px 0;color:#313131;border-right:1px solid #dedede}
+.reserve .week ul li:last-child {border-right:none}
+.reserve .week ul li.sun {color:#f05252}
+.reserve .week ul li.sat {color:#2c80e5}
+
+.reserve .days {width:100%;display:table;overflow:hidden}
+.reserve .days .wrap {display:table-cell;width:183px;min-height:50px;color:#555;border-right:1px solid #dedede}
+.reserve .days .wrap:nth-child(1),
+.reserve .days .wrap:nth-child(2),
+.reserve .days .wrap:nth-child(3),
+.reserve .days .wrap:nth-child(8),
+.reserve .days .wrap:nth-child(9),
+.reserve .days .wrap:nth-child(10),
+.reserve .days .wrap:nth-child(15),
+.reserve .days .wrap:nth-child(16),
+.reserve .days .wrap:nth-child(17),
+.reserve .days .wrap:nth-child(22),
+.reserve .days .wrap:nth-child(23),
+.reserve .days .wrap:nth-child(24),
+.reserve .days .wrap:nth-child(29),
+.reserve .days .wrap:nth-child(30),
+.reserve .days .wrap:nth-child(31),
+.reserve .days .wrap:nth-child(36),
+.reserve .days .wrap:nth-child(37),
+.reserve .days .wrap:nth-child(38) {width:182px}
+.reserve .days .wrap .row {padding:5px 10px;background:#f0f0f0}
+.reserve .days .wrap .row span:last-child {float:right}
+.reserve .days .wrap ul {padding:10px;border-bottom:1px solid #dedede}
+.reserve .days .wrap ul li {line-height:1.8em;font-size:13px}
+.reserve .days .wrap ul li a:hover {text-decoration:underline}
