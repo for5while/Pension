@@ -20,19 +20,19 @@
 				</span>
 				<span class="date">
 					<span class="prev">
-						<a onclick="">
+						<a href="<c:url value='../reserve/real?year=${nowYear }&month=${nowMonth }' />">
 							<span class="material-icons margin-right border">keyboard_arrow_left</span>
 						</a>
 					</span>
-					<span class="month">2020-07</span>
+					<span class="month">${nowYear }-${nowMonth + 1 }</span>
 					<span class="next">
-						<a onclick="">
+						<a href="<c:url value='../reserve/real?year=${nowYear }&month=${nowMonth + 2 }' />">
 							<span class="material-icons margin-left border">keyboard_arrow_right</span>
 						</a>
 					</span>
 				</span>
 				<span class="confirm">
-					<a href="#"><span class="material-icons left margin-right">alarm</span>예약확인</a>
+					<a href="<c:url value='../reserve/confirm' />"><span class="material-icons left margin-right">alarm</span>예약확인</a>
 				</span>
 			</div>
 			
@@ -49,23 +49,45 @@
 			</div>
 			
 			<div class="days">
-				<div class="wrap">
-					<div class="row">
-						<span>1</span>
-						<span>준성수기</span>
+				<c:forEach var="i" begin="1" items="${days }">
+					<div class="wrap">
+						<c:choose>
+							<c:when test="${i eq 111 }">
+								<div class="row">
+									<span>-</span>
+									<span></span>
+								</div>
+								<ul></ul>
+							</c:when>
+							<c:otherwise>
+								<c:if test="${i ne 999 }">
+									<div class="row">
+										<span>${i }일</span>
+										<span>준성수기</span>
+									</div>
+									<ul>
+										<li>201 파티룸</li>
+										<li>202 디럭스풀</li>
+										<li>301 디럭스풀</li>
+										<li>302 디럭스풀</li>
+										<li>303 디럭스풀</li>
+										<li>401 스위트풀</li>
+										<li>402 스위트풀</li>
+										<li>501 스위트풀</li>
+										<li>502 스위트풀</li>
+									</ul>
+								</c:if>
+							</c:otherwise>
+						</c:choose>
+						<c:if test="${i eq 999 }">
+							<div class="row">
+								<span>#</span>
+								<span></span>
+							</div>
+							<ul></ul>
+						</c:if>
 					</div>
-					<ul>
-						<li>201 파티룸</li>
-						<li>202 디럭스풀</li>
-						<li>301 디럭스풀</li>
-						<li>302 디럭스풀</li>
-						<li>303 디럭스풀</li>
-						<li>401 스위트풀</li>
-						<li>402 스위트풀</li>
-						<li>501 스위트풀</li>
-						<li>502 스위트풀</li>
-					</ul>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
