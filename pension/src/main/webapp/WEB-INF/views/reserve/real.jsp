@@ -20,13 +20,13 @@
 				</span>
 				<span class="date">
 					<span class="prev">
-						<a href="<c:url value='../reserve/real?year=${nowYear }&month=${nowMonth }' />">
+						<a href="<c:url value='../reserve/real?year=${reserveVO.year }&month=${reserveVO.month }' />">
 							<span class="material-icons margin-right border">keyboard_arrow_left</span>
 						</a>
 					</span>
-					<span class="month">${nowYear }-${nowMonth + 1 }</span>
+					<span class="month">${reserveVO.year }-${reserveVO.month + 1 } </span>
 					<span class="next">
-						<a href="<c:url value='../reserve/real?year=${nowYear }&month=${nowMonth + 2 }' />">
+						<a href="<c:url value='../reserve/real?year=${reserveVO.year }&month=${reserveVO.month + 2 }' />">
 							<span class="material-icons margin-left border">keyboard_arrow_right</span>
 						</a>
 					</span>
@@ -49,7 +49,7 @@
 			</div>
 			
 			<div class="days">
-				<c:forEach var="i" begin="1" items="${days }">
+				<c:forEach var="i" begin="1" items="${calendar[1] }">
 					<div class="wrap">
 						<c:choose>
 							<c:when test="${i eq 111 }">
