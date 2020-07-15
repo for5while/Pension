@@ -81,7 +81,7 @@
 						</c:choose>
 						<c:if test="${i eq 999 }">
 							<div class="row">
-								<span>#</span>
+								<span>-</span>
 								<span></span>
 							</div>
 							<ul></ul>

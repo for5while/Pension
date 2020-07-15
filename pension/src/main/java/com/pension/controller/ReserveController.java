@@ -34,7 +34,7 @@ public class ReserveController {
 		int endOfMonth = cal.getActualMaximum(Calendar.DATE); // 이번 달 마지막 날짜
 		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 요일
 		
-		ArrayList<Object> days = new ArrayList<>();
+		ArrayList<Integer> days = new ArrayList<>();
 		
 		// 첫 날의 요일 전 날까지 공백으로 채우기
 		for(int i=0; i<=(dayOfWeek-1); i++) {
@@ -44,6 +44,18 @@ public class ReserveController {
 		// 날짜
 		for(int i=1; i<=endOfMonth; i++) {
 			days.add(i);
+		}
+		
+		cal.set(Calendar.DATE, cal.getActualMaximum(Calendar.DAY_OF_MONTH)); // 이번 달 마지막 날짜로 지정
+		int maximumDayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 이번 달 마지막 날짜의 요일
+		
+		// 이번 달 마지막 날짜가 토요일이 아니라면 채워주기
+		if(maximumDayOfWeek != 7) {
+			int count = (7 - maximumDayOfWeek);
+			
+			for(int i=1; i<=count; i++) {
+				days.add(999);
+			}
 		}
 		
 		model.addAttribute("nowYear", nowYear);
