@@ -54,6 +54,6 @@ section .wrap {margin-bottom:0}
 .reserve .days .wrap:nth-child(38) {width:182px}
 .reserve .days .wrap .row {padding:5px 10px;background:#f0f0f0}
 .reserve .days .wrap .row span:last-child {float:right}
-.reserve .days .wrap ul {min-height:228px;padding:10px;border-bottom:1px solid #dedede}
+.reserve .days .wrap ul {min-height:140px;padding:10px;border-bottom:1px solid #dedede}
 .reserve .days .wrap ul li {line-height:1.8em;font-size:13px}
 .reserve .days .wrap ul li a:hover {text-decoration:underline}

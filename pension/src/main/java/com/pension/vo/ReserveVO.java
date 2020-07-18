@@ -5,6 +5,8 @@ public class ReserveVO {
 	private int month;
 	private int day;
 	
+	private int idx;
+	
 	public int getYear() {
 		return year;
 	}
@@ -22,5 +24,12 @@ public class ReserveVO {
 	}
 	public void setDay(int day) {
 		this.day = day;
+	}
+	
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 }

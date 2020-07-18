@@ -47,7 +47,7 @@
 					<li class="sat">SAT</li>
 				</ul>
 			</div>
-			
+
 			<div class="days">
 				<c:forEach var="i" begin="1" items="${calendar[1] }">
 					<div class="wrap">
@@ -66,15 +66,13 @@
 										<span>준성수기</span>
 									</div>
 									<ul>
-										<li>201 파티룸</li>
-										<li>202 디럭스풀</li>
-										<li>301 디럭스풀</li>
-										<li>302 디럭스풀</li>
-										<li>303 디럭스풀</li>
-										<li>401 스위트풀</li>
-										<li>402 스위트풀</li>
-										<li>501 스위트풀</li>
-										<li>502 스위트풀</li>
+										<c:forEach var="j" items="${calendar[2] }">
+											<c:if test="${j.key eq i }">
+												<c:forEach var="k" items="${j.value }">
+													<li>${k.key }</li>
+												</c:forEach>
+											</c:if>
+										</c:forEach>
 									</ul>
 								</c:if>
 							</c:otherwise>
