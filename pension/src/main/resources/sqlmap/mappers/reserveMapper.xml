@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="getRoomStatus" resultType="java.lang.Integer">
-		SELECT idx FROM reservation WHERE room_no = #{roomNum} AND DATE_FORMAT(check_in_datetime, '%d') = #{day}
+		SELECT idx FROM reservation WHERE room_no = #{roomNum} AND check_in_datetime = #{date}
 	</select>
 	
 	<select id="getRoomIsPayment" resultType="java.lang.Integer">

@@ -24,10 +24,10 @@ public class ReserveDAOImpl implements ReserveDAO {
 	}
 
 	@Override
-	public Integer getRoomStatus(int day, int roomNum) {
-		HashMap<String, Integer> param = new HashMap<>();
+	public Integer getRoomStatus(String date, int roomNum) {
+		HashMap<String, Object> param = new HashMap<>();
 		
-		param.put("day", day);
+		param.put("date", date);
 		param.put("roomNum", roomNum);
 		
 		return sqlSession.selectOne(nameSpace + ".getRoomStatus", param);

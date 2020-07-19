@@ -30,7 +30,7 @@ public class ReserveController {
 					   @RequestParam(defaultValue = "0") int year,
 					   @RequestParam(defaultValue = "0") int month) {
 		
-		List<Object> calendar = reserveService.getList(reserveVO);
+		List<Object> calendar = reserveService.getList(reserveVO, year, month);
 		
 		model.addAttribute("calendar", calendar);
 		

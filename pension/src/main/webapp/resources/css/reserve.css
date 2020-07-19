@@ -57,6 +57,6 @@ section .wrap {margin-bottom:0}
 .reserve .days .wrap ul {min-height:140px;padding:10px;border-bottom:1px solid #dedede}
 .reserve .days .wrap ul li {line-height:1.8em;font-size:13px}
 .reserve .days .wrap ul li a:hover {text-decoration:underline}
-.reserve .days .wrap ul li.possible {color:#333}
-.reserve .days .wrap ul li.stand_by {color:#2c80e5}
-.reserve .days .wrap ul li.complete {color:#f05252}
+.reserve .days .wrap ul li.possible a {color:#333}
+.reserve .days .wrap ul li.stand_by {color:#2c80e5;cursor:default}
+.reserve .days .wrap ul li.complete {color:#f05252;cursor:default}

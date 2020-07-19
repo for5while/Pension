@@ -20,11 +20,18 @@ public class ReserveServiceImpl implements ReserveService {
 	private ReserveDAO reserveDAO;
 
 	@Override
-	public List<Object> getList(ReserveVO reserveVO) {
+	public List<Object> getList(ReserveVO reserveVO, int year, int month) {
 		Calendar cal = Calendar.getInstance();
 		
-		int nowYear = cal.get(Calendar.YEAR);
-		int nowMonth = cal.get(Calendar.MONTH);
+		int nowYear = year;
+		int nowMonth = month - 1;
+		
+		if(nowYear == 0) {
+			nowYear = cal.get(Calendar.YEAR);
+		}
+		if(nowMonth == -1) {
+			nowMonth = cal.get(Calendar.MONTH);
+		}
 		
 		cal.set(Calendar.YEAR, nowYear);
 		cal.set(Calendar.MONTH, nowMonth);
@@ -36,7 +43,7 @@ public class ReserveServiceImpl implements ReserveService {
 		// 담아서 보낼 배열
 		HashMap<Integer, Integer> season = new HashMap<>(); // 날짜(일), 비/준/성수기
 		List<Integer> days = new ArrayList<>(); // 날짜(일)
-		List<ReserveVO> rooms = new ArrayList<>(); // DB에 등록된 방
+		List<ReserveVO> rooms = new ArrayList<>(); // 등록된 방
 		HashMap<Integer, TreeMap<String, Integer>> onRooms = new HashMap<>(); // 날짜(일), {방 이름, 예약 상태}
 		TreeMap<String, Integer> statusOfRoom = null;
 		
@@ -63,8 +70,9 @@ public class ReserveServiceImpl implements ReserveService {
 			statusOfRoom = new TreeMap<>(); // 방 이름, 예약 상태
 			
 			for(ReserveVO reserveVO2 : rooms) {
+				
 				// NULL 값이 아니라면 방 번호(idx) 값으로 리턴
-				Integer roomsStatus = reserveDAO.getRoomStatus(i, reserveVO2.getIdx()); // 날짜(i=일)와 방 번호 전달
+				Integer roomsStatus = reserveDAO.getRoomStatus(date, reserveVO2.getIdx()); // 날짜와 방 번호 전달
 				int onStatus = -1;
 				String roomName = reserveDAO.getRoomName(reserveVO2.getIdx());
 				

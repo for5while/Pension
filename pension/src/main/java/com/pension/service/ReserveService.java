@@ -5,5 +5,5 @@ import java.util.List;
 import com.pension.vo.ReserveVO;
 
 public interface ReserveService {
-	public List<Object> getList(ReserveVO reserveVO);
+	public List<Object> getList(ReserveVO reserveVO, int year, int month);
 }
