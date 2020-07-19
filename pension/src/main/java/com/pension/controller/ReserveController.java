@@ -37,6 +37,54 @@ public class ReserveController {
 		return "/reserve/real";
 	}
 	
+	@RequestMapping(value = "/reserve/write", method = RequestMethod.GET)
+	public String write(Model model,
+						ReserveVO reserveVO,
+						@RequestParam(defaultValue = "none") String room,
+						@RequestParam(defaultValue = "0") int year,
+						@RequestParam(defaultValue = "0") int month) {
+		
+		
+		
+		return "/reserve/write";
+	}
+	
+	@RequestMapping(value = "/reserve/write2", method = RequestMethod.GET)
+	public String write2(Model model,
+						 ReserveVO reserveVO,
+						 @RequestParam(defaultValue = "none") String room,
+						 @RequestParam(defaultValue = "0") int year,
+						 @RequestParam(defaultValue = "0") int month) {
+		
+		
+		
+		return "/reserve/write2";
+	}
+	
+	@RequestMapping(value = "/reserve/complete", method = RequestMethod.GET)
+	public String complete(Model model,
+						   ReserveVO reserveVO,
+						   @RequestParam(defaultValue = "none") String room,
+						   @RequestParam(defaultValue = "0") int year,
+						   @RequestParam(defaultValue = "0") int month) {
+		
+		
+		
+		return "/reserve/complete";
+	}
+	
+	@RequestMapping(value = "/reserve/status", method = RequestMethod.GET)
+	public String status(Model model,
+						 ReserveVO reserveVO,
+						 @RequestParam(defaultValue = "none") String room,
+						 @RequestParam(defaultValue = "0") int year,
+						 @RequestParam(defaultValue = "0") int month) {
+		
+		
+		
+		return "/reserve/status";
+	}
+	
 	@RequestMapping(value = "/reserve/confirm", method = RequestMethod.GET)
 	public String confirm() {
 		return "/reserve/confirm";

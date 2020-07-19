@@ -8,6 +8,12 @@
 
 section .wrap {margin-bottom:0}
 
+#guide {margin:15px 0;padding:20px;background:#FFF;border:1px solid #DDD;user-select:none}
+#guide .word {font-size:13px;font-weight:bold;padding-left:20px;background:url(../img/sprites_guide.gif) 0 -27px no-repeat }
+#guide ul {padding-top:8px}
+#guide li {padding-left:20px;line-height:18px;font-family:Dotum,'돋움',sans-serif;font-size:11px;letter-spacing:-1px;color:#999;background:url(../img/sprites_guide.gif) 10px -6px no-repeat}
+#guide li span {color:#ff6565}
+
 .reserve {font-family:'NanumSquareRound';border:1px solid #dedede;border-width:0 0 1px 1px;margin-bottom:100px}
 .reserve .material-icons {position:relative;top:-2px}
 .reserve .material-icons.left {float:left}
@@ -60,3 +66,41 @@ section .wrap {margin-bottom:0}
 .reserve .days .wrap ul li.possible a {color:#333}
 .reserve .days .wrap ul li.stand_by {color:#2c80e5;cursor:default}
 .reserve .days .wrap ul li.complete {color:#f05252;cursor:default}
+
+.write {font-family:'NanumSquareRound';margin-bottom:100px}
+.write select,
+.write label {cursor:pointer}
+.write form > div {margin-bottom:20px;border:1px solid #dedede}
+.write .subject {font-size:13px;padding:10px 15px;background:#f2f2f2;border-bottom:1px solid #dedede}
+.write .content {padding:15px}
+.write .content label {font-size:13px;vertical-align:top;padding-left:5px}
+.write .content ul li {margin-bottom:10px}
+.write .content ul li:last-child {margin-bottom:0}
+.write .content ul li select {float:right;width:150px}
+.write .check {float:left}
+.write .check span:first-child {display:block;font-size:11px;color:#999}
+.write .check span:last-child {font-size:20px;font-weight:bold}
+.write .wave {font-size:36px;margin:0 20px;float:left}
+.write .stay_date {width:100%;padding:5px;margin-top:10px}
+.write .label {font-size:14px;margin-right:5px}
+.write .people {margin-bottom:10px}
+.write .people:last-child {margin-bottom:0}
+.write .btn_next {background:#333;color:#FFF;font-size:15px;margin:0 auto;display:block;padding:10px 0;width:200px}
+
+.write2 {font-family:'NanumSquareRound';margin-bottom:100px}
+.write2 select,
+.write2 label {cursor:pointer}
+.write2 form > div {margin-bottom:30px}
+.write2 .subject span:first-child {background:#333;color:#FFF;padding:5px 5px 3px;font-size:15px;font-weight:bold;letter-spacing:-1px}
+.write2 .subject span:last-child {font-size:20px;font-weight:bold}
+.write2 .content {margin-top:15px;border:1px solid #dedede}
+.write2 .content div {border-bottom:1px solid #dedede;font-size:14px}
+.write2 .content div .title {width:130px;display:inline-block;text-align:center;font-weight:bold;padding:10px 20px;background:#f2f2f2}
+.write2 .content div .info {padding:10px 20px}
+.write2 .content div .info input[type=text] {padding:2px;width:300px}
+.write2 .btn_next {background:#333;color:#FFF;font-size:15px;margin:0 auto;display:block;padding:10px 0;width:200px}
+
+.confirm {font-family:'NanumSquareRound';text-align:center}
+.confirm input {width:300px;margin:15px 0}
+.confirm select {width:300px;padding:10px 7px;cursor:pointer}
+.confirm .btn_next {background:#333;color:#FFF;font-size:15px;margin:15px auto;display:block;padding:10px 0;width:300px}

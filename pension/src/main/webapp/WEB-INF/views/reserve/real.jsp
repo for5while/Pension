@@ -98,7 +98,7 @@
 													</c:choose>
 													
 													<li class="${roomStatus }">
-														<c:url var="request" value="../reserve/request">
+														<c:url var="write" value="../reserve/write">
 															<c:param name="room" value="${num.key }" />
 															<c:param name="year" value="${reserveVO.year }" />
 															<c:param name="month" value="${reserveVO.month+1 }" />
@@ -107,7 +107,7 @@
 														
 														<c:choose>
 															<c:when test="${num.value eq 0 }">
-																<a href="${request }">${num.key }</a>
+																<a href="${write }">${num.key }</a>
 															</c:when>
 															<c:otherwise>
 																${num.key }
