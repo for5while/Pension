@@ -33,10 +33,12 @@ public class ReserveServiceImpl implements ReserveService {
 		int endOfMonth = cal.getActualMaximum(Calendar.DATE); // 이번 달 마지막 날짜
 		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 요일
 		
-		ArrayList<Integer> days = new ArrayList<>();
-		List<ReserveVO> rooms = new ArrayList<>();
-		HashMap<Integer, TreeMap<String, Integer>> onRooms = new HashMap<>();
-		TreeMap<String, Integer> roomAndStatus = new TreeMap<>();
+		// 담아서 보낼 배열
+		HashMap<Integer, Integer> season = new HashMap<>(); // 날짜(일), 비/준/성수기
+		List<Integer> days = new ArrayList<>(); // 날짜(일)
+		List<ReserveVO> rooms = new ArrayList<>(); // DB에 등록된 방
+		HashMap<Integer, TreeMap<String, Integer>> onRooms = new HashMap<>(); // 날짜(일), {방 이름, 예약 상태}
+		TreeMap<String, Integer> roomAndStatus = new TreeMap<>(); // 방 이름, 예약 상태
 		
 		rooms = reserveDAO.getRoomList(); // 방 리스트
 		
@@ -48,6 +50,15 @@ public class ReserveServiceImpl implements ReserveService {
 		// 실제 날짜
 		for(int i=1; i<=endOfMonth; i++) {
 			days.add(i);
+			
+			// 시즌 구분 (0: 비성수기, 1: 준성수기, 2: 성수기)
+			String date = nowYear + "-" + (nowMonth + 1) + "-" + i;
+			String isMidSeason = reserveDAO.isMidSeason(date);
+			String isBusiestSeason = reserveDAO.isBusiestSeason(date);
+			
+			if(isMidSeason != null) season.put(i, 1);
+			else if(isBusiestSeason != null) season.put(i, 2);
+			else season.put(i, 0);
 			
 			for(ReserveVO j : rooms) {
 				// NULL 값이 아니라면 방 번호(idx) 값으로 리턴
@@ -70,6 +81,13 @@ public class ReserveServiceImpl implements ReserveService {
 					}
 				}
 				
+				/*
+				 * onStatus 변수
+				 * 0: 예약 가능
+				 * 1: 예약 대기
+				 * 2: 예약 완료
+				 */
+				
 				roomAndStatus.put(roomName, onStatus);
 				onRooms.put(i, roomAndStatus); // 날짜, {방 이름, 상태}
 			}
@@ -80,7 +98,7 @@ public class ReserveServiceImpl implements ReserveService {
 		
 		// 이번 달 마지막 날짜가 토요일이 아니라면 채워주기
 		if(maximumDayOfWeek != 7) {
-			int count = (7 - maximumDayOfWeek);
+			int count = (7 - maximumDayOfWeek); // 최대 일곱 요일에서 남은 요일 빼주기
 			
 			for(int i=1; i<=count; i++) {
 				days.add(999);
@@ -95,6 +113,7 @@ public class ReserveServiceImpl implements ReserveService {
 		calendar.add(reserveVO);
 		calendar.add(days);
 		calendar.add(onRooms);
+		calendar.add(season);
 		
 		return calendar;
 	}

@@ -63,7 +63,14 @@
 								<c:if test="${i ne 999 }">
 									<div class="row">
 										<span>${i }일</span>
-										<span>준성수기</span>
+										<span>
+											<c:forEach var="season" items="${calendar[3] }">
+												<c:choose>
+													<c:when test="${season.key eq i and season.value eq 1 }">준성수기</c:when>
+													<c:when test="${season.key eq i and season.value eq 2 }">성수기</c:when>
+												</c:choose>
+											</c:forEach>
+										</span>
 									</div>
 									<ul>
 										<c:forEach var="j" items="${calendar[2] }">

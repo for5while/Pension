@@ -9,4 +9,6 @@ public interface ReserveDAO {
 	public Integer getRoomStatus(int day, int roomNum);
 	public Integer getRoomIsPayment(int roomNum);
 	public String getRoomName(int roomNum);
+	public String isMidSeason(String date);
+	public String isBusiestSeason(String date);
 }

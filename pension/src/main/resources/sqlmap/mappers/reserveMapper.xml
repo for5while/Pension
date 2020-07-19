@@ -20,5 +20,13 @@
 	<select id="getRoomName" resultType="java.lang.String">
 		SELECT name FROM room WHERE idx = #{roomNum}
 	</select>
+	
+	<select id="isMidSeason" resultType="java.lang.String">
+		SELECT mid FROM season WHERE mid = #{date}
+	</select>
+	
+	<select id="isBusiestSeason" resultType="java.lang.String">
+		SELECT busiest FROM season WHERE busiest = #{date}
+	</select>
 
 </mapper>
