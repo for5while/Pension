@@ -49,10 +49,10 @@
 			</div>
 
 			<div class="days">
-				<c:forEach var="i" begin="1" items="${calendar[1] }">
+				<c:forEach var="day" begin="1" items="${calendar[1] }">
 					<div class="wrap">
 						<c:choose>
-							<c:when test="${i eq 111 }">
+							<c:when test="${day eq 111 }">
 								<div class="row">
 									<span>-</span>
 									<span></span>
@@ -60,23 +60,35 @@
 								<ul></ul>
 							</c:when>
 							<c:otherwise>
-								<c:if test="${i ne 999 }">
+								<c:if test="${day ne 999 }">
 									<div class="row">
-										<span>${i }일</span>
+										<span>${day }일</span>
 										<span>
 											<c:forEach var="season" items="${calendar[3] }">
 												<c:choose>
-													<c:when test="${season.key eq i and season.value eq 1 }">준성수기</c:when>
-													<c:when test="${season.key eq i and season.value eq 2 }">성수기</c:when>
+													<c:when test="${season.key eq day and season.value eq 1 }">준성수기</c:when>
+													<c:when test="${season.key eq day and season.value eq 2 }">성수기</c:when>
 												</c:choose>
 											</c:forEach>
 										</span>
 									</div>
 									<ul>
-										<c:forEach var="j" items="${calendar[2] }">
-											<c:if test="${j.key eq i }">
-												<c:forEach var="k" items="${j.value }">
-													<li>${k.key }</li>
+										<c:forEach var="room" items="${calendar[2] }">
+											<c:if test="${room.key eq day }">
+												<c:forEach var="num" items="${room.value }">
+													<c:choose>
+														<c:when test="${num.value eq 1 }">
+															<c:set var="roomStatus" value="stand_by" />
+														</c:when>
+														<c:when test="${num.value eq 2 }">
+															<c:set var="roomStatus" value="complete" />
+														</c:when>
+														<c:otherwise>
+															<c:set var="roomStatus" value="possible" />
+														</c:otherwise>
+													</c:choose>
+													
+													<li class="${roomStatus }">${num.key }</li>
 												</c:forEach>
 											</c:if>
 										</c:forEach>
@@ -84,7 +96,7 @@
 								</c:if>
 							</c:otherwise>
 						</c:choose>
-						<c:if test="${i eq 999 }">
+						<c:if test="${day eq 999 }">
 							<div class="row">
 								<span>-</span>
 								<span></span>

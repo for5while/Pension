@@ -38,7 +38,7 @@ public class ReserveServiceImpl implements ReserveService {
 		List<Integer> days = new ArrayList<>(); // 날짜(일)
 		List<ReserveVO> rooms = new ArrayList<>(); // DB에 등록된 방
 		HashMap<Integer, TreeMap<String, Integer>> onRooms = new HashMap<>(); // 날짜(일), {방 이름, 예약 상태}
-		TreeMap<String, Integer> roomAndStatus = new TreeMap<>(); // 방 이름, 예약 상태
+		TreeMap<String, Integer> statusOfRoom = null;
 		
 		rooms = reserveDAO.getRoomList(); // 방 리스트
 		
@@ -59,12 +59,14 @@ public class ReserveServiceImpl implements ReserveService {
 			if(isMidSeason != null) season.put(i, 1);
 			else if(isBusiestSeason != null) season.put(i, 2);
 			else season.put(i, 0);
+
+			statusOfRoom = new TreeMap<>(); // 방 이름, 예약 상태
 			
-			for(ReserveVO j : rooms) {
+			for(ReserveVO reserveVO2 : rooms) {
 				// NULL 값이 아니라면 방 번호(idx) 값으로 리턴
-				Integer roomsStatus = reserveDAO.getRoomStatus(i, j.getIdx()); // 날짜(i=일)와 방 번호 전달
+				Integer roomsStatus = reserveDAO.getRoomStatus(i, reserveVO2.getIdx()); // 날짜(i=일)와 방 번호 전달
 				int onStatus = -1;
-				String roomName = reserveDAO.getRoomName(j.getIdx());
+				String roomName = reserveDAO.getRoomName(reserveVO2.getIdx());
 				
 				if(roomsStatus == null) { // 예약되지 않은 상태 (예약 가능)
 					onStatus = 0;
@@ -75,7 +77,7 @@ public class ReserveServiceImpl implements ReserveService {
 					if(roomIsPayment != null) {
 						if(roomIsPayment == 0) {
 							onStatus = 1;
-						} else {
+						} else if(roomIsPayment == 1) {
 							onStatus = 2;
 						}
 					}
@@ -88,9 +90,10 @@ public class ReserveServiceImpl implements ReserveService {
 				 * 2: 예약 완료
 				 */
 				
-				roomAndStatus.put(roomName, onStatus);
-				onRooms.put(i, roomAndStatus); // 날짜, {방 이름, 상태}
+				statusOfRoom.put(roomName, onStatus);
 			}
+			
+			onRooms.put(i, statusOfRoom); // 날짜, {방 이름, 상태}
 		}
 		
 		cal.set(Calendar.DATE, cal.getActualMaximum(Calendar.DAY_OF_MONTH)); // 이번 달 마지막 날짜로 지정
