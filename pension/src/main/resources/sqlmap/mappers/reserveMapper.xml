@@ -6,27 +6,58 @@
 <mapper namespace="com.pension.sqlmap.mappers.reserveMapper">
 	
 	<select id="getRoomList" resultType="com.pension.vo.ReserveVO">
-		SELECT * FROM room
+		SELECT *
+		FROM room
 	</select>
 	
 	<select id="getRoomStatus" resultType="java.lang.Integer">
-		SELECT idx FROM reservation WHERE room_no = #{roomNum} AND check_in_datetime = #{date}
+		SELECT idx
+		FROM reservation
+		WHERE room_no = #{roomNum} AND check_in_datetime = #{date}
 	</select>
 	
 	<select id="getRoomIsPayment" resultType="java.lang.Integer">
-		SELECT is_payment FROM reservation_status WHERE reserve_no = #{roomNum}
+		SELECT is_payment
+		FROM reservation_status
+		WHERE reserve_no = #{roomNum}
 	</select>
 	
 	<select id="getRoomName" resultType="java.lang.String">
-		SELECT name FROM room WHERE idx = #{roomNum}
+		SELECT name
+		FROM room
+		WHERE idx = #{roomNum}
 	</select>
 	
 	<select id="isMidSeason" resultType="java.lang.String">
-		SELECT mid FROM season WHERE mid = #{date}
+		SELECT mid
+		FROM season
+		WHERE mid = #{date}
 	</select>
 	
 	<select id="isBusiestSeason" resultType="java.lang.String">
-		SELECT busiest FROM season WHERE busiest = #{date}
+		SELECT busiest
+		FROM season
+		WHERE busiest = #{date}
+	</select>
+	
+	<select id="getNight" resultType="java.lang.Integer">
+		SELECT night
+		FROM room
+		WHERE name = #{room}
+	</select>
+	
+	<select id="getPeoples" resultType="com.pension.vo.ReserveVO">
+		SELECT people_adult peopleAdult, people_child peopleChild, people_infant peopleInfant
+		FROM room
+		WHERE name = #{room}
+	</select>
+	
+	<select id="getOptions" resultType="com.pension.vo.ReserveVO">
+		SELECT b.idx optionIndex, b.name optionName, b.price optionPrice
+		FROM room a
+		JOIN room_option b
+		ON a.idx = b.room_no 
+		WHERE a.name = #{room};
 	</select>
 
 </mapper>

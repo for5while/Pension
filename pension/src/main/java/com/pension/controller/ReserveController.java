@@ -39,12 +39,21 @@ public class ReserveController {
 	
 	@RequestMapping(value = "/reserve/write", method = RequestMethod.GET)
 	public String write(Model model,
-						ReserveVO reserveVO,
 						@RequestParam(defaultValue = "none") String room,
 						@RequestParam(defaultValue = "0") int year,
-						@RequestParam(defaultValue = "0") int month) {
+						@RequestParam(defaultValue = "0") int month,
+						@RequestParam(defaultValue = "0") int day,
+						@RequestParam(defaultValue = "0") int lastDay) {
 		
+		List<Object> roomInfos = reserveService.getRoomInfo(room);
+		List<Object> roomOptions = reserveService.getRoomOption(room);
 		
+		model.addAttribute("year", year);
+		model.addAttribute("month", month);
+		model.addAttribute("day", day);
+		model.addAttribute("lastDay", lastDay);
+		model.addAttribute("roomInfos", roomInfos);
+		model.addAttribute("roomOptions", roomOptions);
 		
 		return "/reserve/write";
 	}
@@ -73,6 +82,11 @@ public class ReserveController {
 		return "/reserve/complete";
 	}
 	
+	@RequestMapping(value = "/reserve/confirm", method = RequestMethod.GET)
+	public String confirm() {
+		return "/reserve/confirm";
+	}
+	
 	@RequestMapping(value = "/reserve/status", method = RequestMethod.GET)
 	public String status(Model model,
 						 ReserveVO reserveVO,
@@ -84,10 +98,4 @@ public class ReserveController {
 		
 		return "/reserve/status";
 	}
-	
-	@RequestMapping(value = "/reserve/confirm", method = RequestMethod.GET)
-	public String confirm() {
-		return "/reserve/confirm";
-	}
-	
 }

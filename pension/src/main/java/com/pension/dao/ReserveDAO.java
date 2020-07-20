@@ -11,4 +11,8 @@ public interface ReserveDAO {
 	public String getRoomName(int roomNum);
 	public String isMidSeason(String date);
 	public String isBusiestSeason(String date);
+	
+	public Integer getNight(String room);
+	public List<ReserveVO> getPeoples(String room);
+	public List<Object> getOptions(String room);
 }

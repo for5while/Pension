@@ -121,11 +121,33 @@ public class ReserveServiceImpl implements ReserveService {
 		reserveVO.setYear(nowYear);
 		reserveVO.setMonth(nowMonth);
 		
+		int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+		
 		calendar.add(reserveVO);
 		calendar.add(days);
 		calendar.add(onRooms);
 		calendar.add(season);
+		calendar.add(lastDay);
 		
 		return calendar;
+	}
+
+	@Override
+	public List<Object> getRoomInfo(String room) {
+		int night = reserveDAO.getNight(room);
+		List<ReserveVO> peoples = reserveDAO.getPeoples(room);
+		List<Object> roomInfos = new ArrayList<>();
+		
+		roomInfos.add(night);
+		roomInfos.add(peoples);
+		
+		return roomInfos;
+	}
+
+	@Override
+	public List<Object> getRoomOption(String room) {
+		List<Object> options = reserveDAO.getOptions(room);
+		
+		return options;
 	}
 }

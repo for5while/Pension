@@ -52,4 +52,19 @@ public class ReserveDAOImpl implements ReserveDAO {
 	public String isBusiestSeason(String date) {
 		return sqlSession.selectOne(nameSpace + ".isBusiestSeason", date);
 	}
+
+	@Override
+	public Integer getNight(String room) {
+		return sqlSession.selectOne(nameSpace + ".getNight", room);
+	}
+
+	@Override
+	public List<ReserveVO> getPeoples(String room) {
+		return sqlSession.selectList(nameSpace + ".getPeoples", room);
+	}
+
+	@Override
+	public List<Object> getOptions(String room) {
+		return sqlSession.selectList(nameSpace + ".getOptions", room);
+	}
 }

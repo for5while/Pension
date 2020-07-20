@@ -83,7 +83,6 @@
 										<c:forEach var="room" items="${calendar[2] }">
 											<c:if test="${room.key eq day }">
 												<c:forEach var="num" items="${room.value }">
-												
 													<!-- 예약 상태 구분 -->
 													<c:choose>
 														<c:when test="${num.value eq 1 }">
@@ -103,6 +102,7 @@
 															<c:param name="year" value="${reserveVO.year }" />
 															<c:param name="month" value="${reserveVO.month+1 }" />
 															<c:param name="day" value="${day }" />
+															<c:param name="lastDay" value="${calendar[4] }" />
 														</c:url>
 														
 														<c:choose>
