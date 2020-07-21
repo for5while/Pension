@@ -237,7 +237,7 @@ public class ReserveServiceImpl implements ReserveService {
 		reserveVO.setCheckInDate(year + "-" + month + "-" + day);
 		
 		// 체크아웃 날짜까지 반복 삽입
-		for(int i=0; i<=reserveVO.getNight(); ++i) {
+		for(int i=0; i<=reserveVO.getNight(); i++) {
 			reserveDAO.insertReserve(reserveVO);
 			
 			dayToInt += 1;
@@ -245,7 +245,11 @@ public class ReserveServiceImpl implements ReserveService {
 			// 이 달의 마지막 날짜를 초과하는 경우
 			if(dayToInt > reserveVO.getLastDay()) {
 				monthToInt += 1;
-				dayToInt = (dayToInt - reserveVO.getLastDay()) + reserveVO.getNight();
+				
+				System.out.println("getLastDay() : " + reserveVO.getLastDay());
+				System.out.println("getNight() : " + reserveVO.getNight());
+				
+				dayToInt = dayToInt - reserveVO.getLastDay();
 			}
 			
 			reserveVO.setCheckInDate(year + "-" + monthToInt + "-" + dayToInt);

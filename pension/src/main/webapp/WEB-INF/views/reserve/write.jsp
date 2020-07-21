@@ -120,6 +120,9 @@ function selectDate() {
 	// 이 달의 마지막 날짜를 초과하는 경우
 	if(day > lastDay) {
 		month += 1;
+		console.log(checkInDate);
+		console.log(lastDay);
+		console.log(dateValue);
 		day = (checkInDate - lastDay) + dateValue; // 예약중인 날짜에서 마지막 날짜를 빼준 값에 x박을 더하기
 	}
 	
