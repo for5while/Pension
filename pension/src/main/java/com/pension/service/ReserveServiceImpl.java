@@ -82,6 +82,8 @@ public class ReserveServiceImpl implements ReserveService {
 					// 방 예약이 되어있는 상태에서 결제 완료 되었다면 예약 완료(1), 아니라면 예약 대기 상태(0)
 					Integer roomIsPayment = reserveDAO.getRoomIsPayment(roomsStatus);
 					
+					onStatus = 3;
+					
 					if(roomIsPayment != null) {
 						if(roomIsPayment == 0) {
 							onStatus = 1;
@@ -96,6 +98,7 @@ public class ReserveServiceImpl implements ReserveService {
 				 * 0: 예약 가능
 				 * 1: 예약 대기
 				 * 2: 예약 완료
+				 * 3: 예약 불가(대기 또는 완료 시의 마지막 날짜 이전에 표기되는 상태)
 				 */
 				
 				statusOfRoom.put(roomName, onStatus);

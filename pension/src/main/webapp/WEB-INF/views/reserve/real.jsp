@@ -16,6 +16,7 @@
 				<span class="legend">
 					<span>예약가능</span>
 					<span>예약대기</span>
+					<span>예약불가</span>
 					<span>예약완료</span>
 				</span>
 				<span class="date">
@@ -90,6 +91,9 @@
 														</c:when>
 														<c:when test="${num.value eq 2 }">
 															<c:set var="roomStatus" value="complete" />
+														</c:when>
+														<c:when test="${num.value eq 3 }">
+															<c:set var="roomStatus" value="impossible" />
 														</c:when>
 														<c:otherwise>
 															<c:set var="roomStatus" value="possible" />

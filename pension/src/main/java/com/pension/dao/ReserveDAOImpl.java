@@ -130,7 +130,6 @@ public class ReserveDAOImpl implements ReserveDAO {
 
 	@Override
 	public void insertReserveStatus(ReserveVO reserveVO) {
-		System.out.println(reserveVO.getCheckInDate());
 		sqlSession.insert(nameSpace + ".insertReserveStatus", reserveVO);
 	}
 }
