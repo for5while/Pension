@@ -59,5 +59,93 @@
 		ON a.idx = b.room_no 
 		WHERE a.name = #{room};
 	</select>
+	
+	<select id="getOptionName" resultType="java.lang.String">
+		SELECT name
+		FROM room_option
+		WHERE idx = #{optionNum}
+	</select>
+	
+	<select id="getRoomDefaultPrice" resultType="java.lang.Integer">
+		SELECT price
+		FROM room
+		WHERE name = #{room}
+	</select>
+	
+	<select id="getRoomFriPrice" resultType="java.lang.Integer">
+		SELECT price_fri
+		FROM room
+		WHERE name = #{room}
+	</select>
+	
+	<select id="getRoomSatPrice" resultType="java.lang.Integer">
+		SELECT price_sat
+		FROM room
+		WHERE name = #{room}
+	</select>
+	
+	<select id="getRoomMidSeasonPrice" resultType="java.lang.Integer">
+		SELECT mid
+		FROM season
+		WHERE mid = #{date}
+	</select>
+	
+	<select id="getRoomBusiestSeasonPrice" resultType="java.lang.Integer">
+		SELECT busiest
+		FROM season
+		WHERE busiest = #{date}
+	</select>
+	
+	<select id="getRoomMidSeasonPriceAdd" resultType="java.lang.Integer">
+		SELECT price_mid_season
+		FROM room
+		WHERE name = #{room}
+	</select>
+	
+	<select id="getRoomBusiestSeasonPriceAdd" resultType="java.lang.Integer">
+		SELECT price_busiest_season
+		FROM room
+		WHERE name = #{room}
+	</select>
+	
+	<select id="getOptionPrice" resultType="java.lang.Integer">
+		SELECT price
+		FROM room_option
+		WHERE idx = #{optionNum}
+	</select>
+	
+	<insert id="insertCustomer">
+		INSERT
+		INTO customer(name, phone)
+		VALUES(#{name}, #{phone})
+	</insert>
+	
+	<insert id="insertReserve">
+		<selectKey keyProperty="roomNum,customerNum" resultType="com.pension.vo.ReserveVO" order="BEFORE">
+			SELECT a.idx roomNum, b.idx customerNum
+			FROM room a
+			JOIN customer b
+			ON b.name = #{customerName} AND b.phone = #{customerPhone}
+			WHERE a.name = #{roomName}
+		</selectKey>
+		
+		INSERT
+		INTO reservation(room_no, customer_no, check_in_time, check_in_datetime, check_out_datetime, people_adult, people_child, people_infant, options, message)
+		VALUES(#{roomNum}, #{customerNum}, #{checkInTime}, #{checkInDate}, #{checkOutDate}, #{peopleAdult}, #{peopleChild}, #{peopleInfant}, #{optionToString}, #{message})
+	</insert>
+	
+	<insert id="insertReserveStatus">
+		<selectKey keyProperty="reserveNum" resultType="java.lang.Integer" order="BEFORE">
+			SELECT idx
+			FROM reservation
+			WHERE check_in_datetime = #{checkInDate}
+			ORDER BY idx DESC
+			LIMIT 1
+		</selectKey>
+	
+		INSERT
+		INTO reservation_status(reserve_no, depositor, price, payment_datetime, is_payment)
+		VALUES(#{reserveNum}, #{customerName}, #{totalPrice}, #{paymentDatetime}, 0)
+	</insert>
 
 </mapper>

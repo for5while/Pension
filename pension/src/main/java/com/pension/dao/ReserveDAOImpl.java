@@ -67,4 +67,70 @@ public class ReserveDAOImpl implements ReserveDAO {
 	public List<Object> getOptions(String room) {
 		return sqlSession.selectList(nameSpace + ".getOptions", room);
 	}
+
+	@Override
+	public String getOptionName(int optionNum) {
+		return sqlSession.selectOne(nameSpace + ".getOptionName", optionNum);
+	}
+
+	@Override
+	public int getRoomDefaultPrice(String room) {
+		return sqlSession.selectOne(nameSpace + ".getRoomDefaultPrice", room);
+	}
+
+	@Override
+	public int getRoomFriPrice(String room) {
+		return sqlSession.selectOne(nameSpace + ".getRoomFriPrice", room);
+	}
+
+	@Override
+	public int getRoomSatPrice(String room) {
+		return sqlSession.selectOne(nameSpace + ".getRoomSatPrice", room);
+	}
+
+	@Override
+	public Integer getRoomMidSeasonPrice(String date) {
+		return sqlSession.selectOne(nameSpace + ".getRoomMidSeasonPrice", date);
+	}
+
+	@Override
+	public Integer getRoomBusiestSeasonPrice(String date) {
+		return sqlSession.selectOne(nameSpace + ".getRoomBusiestSeasonPrice", date);
+	}
+
+	@Override
+	public int getRoomMidSeasonPriceAdd(String room) {
+		return sqlSession.selectOne(nameSpace + ".getRoomMidSeasonPriceAdd", room);
+	}
+
+	@Override
+	public int getRoomBusiestSeasonPriceAdd(String room) {
+		return sqlSession.selectOne(nameSpace + ".getRoomBusiestSeasonPriceAdd", room);
+	}
+
+	@Override
+	public Integer getOptionPrice(int optionNum) {
+		return sqlSession.selectOne(nameSpace + ".getOptionPrice", optionNum);
+	}
+
+	@Override
+	public void insertCustomer(String name, String phone) {
+		HashMap<String, String> param = new HashMap<>();
+		
+		param.put("name", name);
+		param.put("phone", phone);
+		
+		sqlSession.insert(nameSpace + ".insertCustomer", param);
+	}
+
+	@Override
+	public void insertReserve(ReserveVO reserveVO) {
+		sqlSession.insert(nameSpace + ".insertReserve", reserveVO);
+	}
+
+	@Override
+	public void insertReserveStatus(ReserveVO reserveVO) {
+		System.out.println(reserveVO.getCheckInDate());
+		sqlSession.insert(nameSpace + ".insertReserveStatus", reserveVO);
+	}
 }

@@ -31,7 +31,7 @@
 				<div class="content">
 					<div>
 						<span class="title">예약자 성함</span>
-						<span class="info">350,000원</span>
+						<span class="info">홍길동</span>
 					</div>
 					<div>
 						<span class="title">연락처</span>

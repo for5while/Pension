@@ -9,7 +9,7 @@
 <section>
 	<div class="wrap">
 		<div class="write">
-			<form action="<c:url value='../reserve/write2' />" method="get" name="wf" onsubmit="return write_submit();">
+			<form action="<c:url value='../reserve/write2' />" method="get" name="wf">
 				<!-- 기간 선택 -->
 				<div>
 					<div class="subject">기간 선택</div>
@@ -24,8 +24,8 @@
 							<span id="check_out"></span>
 						</div>
 						
-						<select class="stay_date" id="stay_date" name="stay_date" onchange="selectDate()">
-							<option value="0">머무실 기간을 선택하세요.</option>
+						<select class="stay_date" id="stay_date" name="stay_date" onchange="selectDate()" required="required">
+							<option value="">머무실 기간을 선택하세요.</option>
 							<c:forEach var="night" begin="1" end="${roomInfos[0] }">
 								<option value="${night }">${night }박</option>
 							</c:forEach>
@@ -39,8 +39,8 @@
 					<div class="content">
 						<div class="people">
 							<span class="label">성인</span>
-							<select name="adult">
-								<option value="-1">선택</option>
+							<select name="adult" required="required">
+								<option value="">선택</option>
 								<c:forEach var="people" begin="1" end="${roomInfos[1][0].peopleAdult }">
 									<option value="${people }">${people }명</option>
 								</c:forEach>
@@ -49,8 +49,8 @@
 						
 						<div class="people">
 							<span class="label">아동</span>
-							<select name="child">
-								<option value="-1">선택</option>
+							<select name="child" required="required">
+								<option value="">선택</option>
 								<option value="0">없음</option>
 								<c:forEach var="people" begin="1" end="${roomInfos[1][0].peopleChild }">
 									<option value="${people }">${people }명</option>
@@ -60,8 +60,8 @@
 						
 						<div class="people">
 							<span class="label">유아</span>
-							<select name="infant">
-								<option value="-1">선택</option>
+							<select name="infant" required="required">
+								<option value="">선택</option>
 								<option value="0">없음</option>
 								<c:forEach var="people" begin="1" end="${roomInfos[1][0].peopleInfant }">
 									<option value="${people }">${people }명</option>
@@ -96,7 +96,7 @@
 				<input type="hidden" name="month" value="${param.month }">
 				<input type="hidden" name="day" value="${param.day }">
 				<input type="hidden" name="lastDay" value="${param.lastDay }">
-				<input type="hidden" id="checkOutDate" value="">
+				<input type="hidden" name="checkOutDate" id="checkOutDate" value="">
 				
 				<input type="submit" class="btn_next" value="다음">
 			</form>
@@ -105,25 +105,6 @@
 </section>
 
 <script type="text/javascript">
-function write_submit() {
-	if(wf.stay_date.value == 0) {
-		alert("머무실 기간을 선택해주세요.");
-		return false;
-	}
-	else if(wf.adult.value == -1) {
-		alert("성인 인원 수를 선택해주세요.");
-		return false;
-	}
-	else if(wf.child.value == -1) {
-		alert("아동 인원 수를 선택해주세요.");
-		return false;
-	}
-	else if(wf.infant.value == -1) {
-		alert("유아 인원 수를 선택해주세요.");
-		return false;
-	}
-}
-
 function selectDate() {
 	var date = document.getElementById("stay_date");
 	var dateValue = parseInt(date.options[date.selectedIndex].value); // x박

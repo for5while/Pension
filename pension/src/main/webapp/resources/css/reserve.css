@@ -98,6 +98,7 @@ section .wrap {margin-bottom:0}
 .write2 .content div .title {width:130px;display:inline-block;text-align:center;font-weight:bold;padding:10px 20px;background:#f2f2f2}
 .write2 .content div .info {padding:10px 20px}
 .write2 .content div .info input[type=text] {padding:2px;width:300px}
+.write2 .content div .info strong {color:#FF0000}
 .write2 .btn_next {background:#333;color:#FFF;font-size:15px;margin:0 auto;display:block;padding:10px 0;width:200px}
 
 .confirm {font-family:'NanumSquareRound';text-align:center}

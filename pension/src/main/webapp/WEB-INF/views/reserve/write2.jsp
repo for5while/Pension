@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div class="mini-background eighth">
 	<div>실시간 예약</div>
 </div>
+
+<fmt:formatNumber var="month" value="${month }" pattern="00" />
+<fmt:formatNumber var="day" value="${day }" pattern="00" />
+<fmt:formatNumber var="roomPrice" value="${roomPrice }" type="currency" currencySymbol="" />
+<fmt:formatNumber var="optionPrice" value="${optionPrice }" type="currency" currencySymbol="" />
+<fmt:formatNumber var="totalPrice" value="${totalPrice }" type="currency" currencySymbol="" />
 
 <section>
 	<div class="wrap">
@@ -18,25 +25,28 @@
 					<div class="content">
 						<div>
 							<span class="title">객실</span>
-							<span class="info">401 스위트풀</span>
+							<span class="info">${room }</span>
 						</div>
 						<div>
 							<span class="title">날짜</span>
-							<span class="info">2020.07.19 ~ 2020.07.25</span>
+							<span class="info">${year }-${month }-${day } ~ ${checkOutDate }</span>
 						</div>
 						<div>
 							<span class="title">숙박인원</span>
-							<span class="info">성인 = 2명, 아동 = 없음, 유아 = 없음</span>
+							<span class="info">성인 = ${adult }명, 아동 = ${child }명, 유아 = ${infant }명</span>
 						</div>
 						<div>
 							<span class="title">옵션</span>
 							<span class="info option">
-								<span>아웃도어 바베큐 가스그릴 (4인기준) [1set], 이런저런 옵션 [3set]</span>
+								<c:forEach var="option" varStatus="index" items="${optionNames }">
+									<span>${option }</span>
+									<c:if test="${not index.last }">,</c:if>
+								</c:forEach>
 							</span>
 						</div>
 						<div>
 							<span class="title">가격</span>
-							<span class="info">객실금액 = 350,000원 + 옵션추가금액 = 0원 :: 합계 = 350,000원</span>
+							<span class="info">객실금액 = ${roomPrice }원 + 옵션추가금액 = ${optionPrice }원 <strong>::</strong> 합계 = <strong>${totalPrice }원</strong></span>
 						</div>
 					</div>
 				</div>
@@ -48,11 +58,11 @@
 					<div class="content">
 						<div>
 							<span class="title">이름</span>
-							<span class="info"><input type="text" name="name"></span>
+							<span class="info"><input type="text" name="name" required="required"></span>
 						</div>
 						<div>
 							<span class="title">연락처</span>
-							<span class="info"><input type="text" name="phone"></span>
+							<span class="info"><input type="text" name="phone" required="required"></span>
 						</div>
 						<div>
 							<span class="title">요청사항</span>
@@ -69,8 +79,8 @@
 						<div>
 							<span class="title">체크인 시간</span>
 							<span class="info">
-								<select name="checkin">
-									<option value="0">선택</option>
+								<select name="check_in_time" required="required">
+									<option value="">선택</option>
 									<option value="15">15시</option>
 									<option value="16">16시</option>
 									<option value="17">17시</option>
@@ -82,7 +92,25 @@
 						</div>
 					</div>
 				</div>
+				
 				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
+				<input type="hidden" name="room" value="${room }">
+				<input type="hidden" name="year" value="${year }">
+				<input type="hidden" name="month" value="${month }">
+				<input type="hidden" name="day" value="${day }">
+				<input type="hidden" name="lastDay" value="${param.lastDay }">
+				<input type="hidden" name="checkOutDate" value="${checkOutDate }">
+				<input type="hidden" name="stayDate" value="${stayDate }">
+				<input type="hidden" name="adult" value="${adult }">
+				<input type="hidden" name="child" value="${child }">
+				<input type="hidden" name="infant" value="${infant }">
+				
+				<c:if test="${not empty paramValues.option }">
+					<c:forEach var="i" begin="0" end="${fn:length(paramValues.option) - 1 }">
+						<input type="hidden" name="option" value="${paramValues.option[i] }">
+					</c:forEach>
+				</c:if>
+				
 				<input type="submit" class="btn_next" value="완료">
 			</form>
 		</div>
