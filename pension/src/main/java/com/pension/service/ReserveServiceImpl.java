@@ -135,6 +135,14 @@ public class ReserveServiceImpl implements ReserveService {
 		
 		return calendar;
 	}
+	
+	@Override
+	public String getIsPass(String room, String checkOutDate) {
+		// 방 이름으로 번호 구하기
+		room = reserveDAO.getRoomNumber(room) + "";
+		
+		return reserveDAO.getIsPass(room, checkOutDate);
+	}
 
 	@Override
 	public List<Object> getRoomInfo(String room) {

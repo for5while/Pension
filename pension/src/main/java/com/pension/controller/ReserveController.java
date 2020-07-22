@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,6 +66,7 @@ public class ReserveController {
 	
 	@RequestMapping(value = "/reserve/write2", method = RequestMethod.GET)
 	public String write2(Model model,
+						 HttpSession session,
 						 @RequestParam(defaultValue = "none") String room,
 						 @RequestParam(defaultValue = "0") int year,
 						 @RequestParam(defaultValue = "0") int month,
@@ -76,6 +78,12 @@ public class ReserveController {
 						 @RequestParam(defaultValue = "0") List<Integer> option,
 						 @RequestParam(defaultValue = "0", value = "stay_date") int stayDate) {
 
+		// 체크아웃 날짜가 이미 예약 대기/완료 상태라면 되돌아가기
+		if(reserveService.getIsPass(room, checkOutDate) != null) {
+			session.setAttribute("error", "이미 예약 대기 또는 완료된 날짜가 겹쳤습니다.<br>달력에서 날짜를 확인해주세요.");
+			return "redirect:/reserve/real";
+		}
+		
 		// 객실 금액
 		int roomPrice = reserveService.getRoomPrice(room, stayDate, year, month, day);
 		

@@ -9,7 +9,8 @@ public interface ReserveService {
 	public List<Object> getList(ReserveVO reserveVO, int year, int month);
 	public List<Object> getRoomInfo(String room);
 	public List<Object> getRoomOption(String room);
-	
+
+	public String getIsPass(String room, String checkOutDate);
 	public String getOptionName(int optionNum);
 	public Integer getOptionPrice(int optionNum);
 	public int getRoomPrice(String room, int stayDate, int year, int month, int day);

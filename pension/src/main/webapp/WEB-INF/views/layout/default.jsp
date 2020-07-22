@@ -33,9 +33,8 @@
 						type: 'error',
 						icon: 'error',
 						title: error,
-						width: 700,
 						showConfirmButton: false,
-						timer: 2000,
+						timer: 3500,
 						timerProgressBar: true
 					})
 				}

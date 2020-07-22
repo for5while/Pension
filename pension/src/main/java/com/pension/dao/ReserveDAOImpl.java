@@ -40,6 +40,21 @@ public class ReserveDAOImpl implements ReserveDAO {
 	}
 
 	@Override
+	public String getIsPass(String room, String checkOutDate) {
+		HashMap<String, String> param = new HashMap<>();
+		
+		param.put("room", room);
+		param.put("checkOutDate", checkOutDate);
+		
+		return sqlSession.selectOne(nameSpace + ".getIsPass", param);
+	}
+
+	@Override
+	public int getRoomNumber(String roomName) {
+		return sqlSession.selectOne(nameSpace + ".getRoomNumber", roomName);
+	}
+
+	@Override
 	public String getRoomName(int roomNum) {
 		return sqlSession.selectOne(nameSpace + ".getRoomName", roomNum);
 	}

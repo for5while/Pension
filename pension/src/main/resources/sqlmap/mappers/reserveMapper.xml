@@ -22,6 +22,18 @@
 		WHERE reserve_no = #{roomNum}
 	</select>
 	
+	<select id="getIsPass" resultType="java.lang.String">
+		SELECT check_in_datetime
+		FROM reservation
+		WHERE room_no = #{room} AND check_in_datetime = #{checkOutDate}
+	</select>
+	
+	<select id="getRoomNumber" resultType="java.lang.Integer">
+		SELECT idx
+		FROM room
+		WHERE name = #{roomName}
+	</select>
+	
 	<select id="getRoomName" resultType="java.lang.String">
 		SELECT name
 		FROM room

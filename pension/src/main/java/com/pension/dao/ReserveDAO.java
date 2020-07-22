@@ -9,10 +9,12 @@ public interface ReserveDAO {
 	public List<ReserveVO> getRoomList();
 	public Integer getRoomStatus(String date, int roomNum);
 	public Integer getRoomIsPayment(int roomNum);
+	public int getRoomNumber(String roomName);
 	public String getRoomName(int roomNum);
 	public String isMidSeason(String date);
 	public String isBusiestSeason(String date);
 	
+	public String getIsPass(String room, String checkOutDate);
 	public Integer getNight(String room);
 	public List<ReserveVO> getPeoples(String room);
 	public List<Object> getOptions(String room);
