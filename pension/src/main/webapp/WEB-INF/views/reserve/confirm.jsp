@@ -11,20 +11,47 @@
 		<div class="confirm">
 			<form action="<c:url value='/reserve/confirm' />" method="post">
 				<div>
-					<input type="text" name="depositor" placeholder="입금자명" required="required">
+					<input type="text" name="customerName" placeholder="입금자명" required="required">
 				</div>
 				<div>
-					<select name="date">
-						<option value="0">입금한 날짜를 선택하세요.</option>
-						<option value="1">1일</option>
-						<option value="2">2일</option>
-						<option value="3">3일</option>
-						<option value="4">4일</option>
-						<option value="5">5일</option>
-						<option value="6">6일</option>
-						<option value="7">7일</option>
-						<option value="8">8일</option>
-						<option value="9">9일</option>
+					<select name="yearToString" required="required">
+						<option value="">입금한 년도를 선택하세요.</option>
+						<option value="2020">2020년</option>
+						<option value="2021">2021년</option>
+						<option value="2022">2022년</option>
+						<option value="2023">2023년</option>
+						<option value="2024">2024년</option>
+					</select>
+				</div>
+				<div>
+					<select name="monthToString" required="required">
+						<option value="">입금한 날짜(월)를 선택하세요.</option>
+						<option value="01">1월</option>
+						<option value="02">2월</option>
+						<option value="03">3월</option>
+						<option value="04">4월</option>
+						<option value="05">5월</option>
+						<option value="06">6월</option>
+						<option value="07">7월</option>
+						<option value="08">8월</option>
+						<option value="09">9월</option>
+						<option value="10">10월</option>
+						<option value="11">11월</option>
+						<option value="12">12월</option>
+					</select>
+				</div>
+				<div>
+					<select name="dayToString" required="required">
+						<option value="">입금한 날짜(일)를 선택하세요.</option>
+						<option value="01">1일</option>
+						<option value="02">2일</option>
+						<option value="03">3일</option>
+						<option value="04">4일</option>
+						<option value="05">5일</option>
+						<option value="06">6일</option>
+						<option value="07">7일</option>
+						<option value="08">8일</option>
+						<option value="09">9일</option>
 						<option value="10">10일</option>
 						<option value="11">11일</option>
 						<option value="12">12일</option>

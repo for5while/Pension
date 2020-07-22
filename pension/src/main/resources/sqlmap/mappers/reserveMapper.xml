@@ -164,5 +164,11 @@
 		SELECT bank, holder, number
 		FROM account
 	</select>
+	
+	<select id="getReserveStatus" resultType="hashMap">
+		SELECT is_payment, payment_datetime
+		FROM reservation_status
+		WHERE depositor = #{customerName} AND payment_datetime LIKE CONCAT('%' ,#{date}, '%')
+	</select>
 
 </mapper>

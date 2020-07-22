@@ -7,7 +7,11 @@ public class ReserveVO {
 	private int year;
 	private int month;
 	private int day;
+	private String yearToString;
+	private String monthToString;
+	private String dayToString;
 	private int lastDay;
+	private String date;
 	private int idx;
 	private int optionIndex;
 	private String optionName;
@@ -209,5 +213,29 @@ public class ReserveVO {
 	}
 	public void setLastDay(int lastDay) {
 		this.lastDay = lastDay;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getYearToString() {
+		return yearToString;
+	}
+	public void setYearToString(String yearToString) {
+		this.yearToString = yearToString;
+	}
+	public String getMonthToString() {
+		return monthToString;
+	}
+	public void setMonthToString(String monthToString) {
+		this.monthToString = monthToString;
+	}
+	public String getDayToString() {
+		return dayToString;
+	}
+	public void setDayToString(String dayToString) {
+		this.dayToString = dayToString;
 	}
 }

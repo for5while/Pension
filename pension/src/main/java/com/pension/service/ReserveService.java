@@ -20,4 +20,5 @@ public interface ReserveService {
 	public void insertReserveStatus(ReserveVO reserveVO);
 	
 	public Map<String, String> getAccountInfo();
+	public Map<String, String> getReserveStatus(ReserveVO reserveVO);
 }

@@ -281,4 +281,11 @@ public class ReserveServiceImpl implements ReserveService {
 	public Map<String, String> getAccountInfo() {
 		return reserveDAO.getAccountInfo();
 	}
+
+	@Override
+	public Map<String, String> getReserveStatus(ReserveVO reserveVO) {
+		reserveVO.setDate(reserveVO.getYearToString() + "-" + reserveVO.getMonthToString() + "-" + reserveVO.getDayToString());
+		
+		return reserveDAO.getReserveStatus(reserveVO);
+	}
 }

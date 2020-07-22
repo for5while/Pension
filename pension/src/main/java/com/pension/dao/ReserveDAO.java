@@ -34,4 +34,5 @@ public interface ReserveDAO {
 	public void insertReserveStatus(ReserveVO reserveVO);
 	
 	public Map<String, String> getAccountInfo();
+	public Map<String, String> getReserveStatus(ReserveVO reserveVO);
 }

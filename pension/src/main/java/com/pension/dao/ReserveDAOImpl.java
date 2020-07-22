@@ -153,4 +153,9 @@ public class ReserveDAOImpl implements ReserveDAO {
 	public Map<String, String> getAccountInfo() {
 		return sqlSession.selectOne(nameSpace + ".getAccountInfo");
 	}
+
+	@Override
+	public Map<String, String> getReserveStatus(ReserveVO reserveVO) {
+		return sqlSession.selectOne(nameSpace + ".getReserveStatus", reserveVO);
+	}
 }

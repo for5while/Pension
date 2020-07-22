@@ -17,14 +17,21 @@
 				<div class="content">
 					<div>
 						<span class="title">
-							<span>접수 시간</span>
+							<span>접수/결제 시간</span>
 						</span>
-						<span class="info">2020-07-19 22:31:00</span>
+						<span class="info">${reserveStatus.payment_datetime }</span>
 					</div>
 					<div>
 						<span class="title">예약 상태</span>
 						<span class="info">
-							<span>미완료</span>
+							<c:choose>
+								<c:when test="${reserveStatus.is_payment eq 0 }">
+									<span>미완료</span>
+								</c:when>
+								<c:otherwise>
+									<span>완료</span>
+								</c:otherwise>
+							</c:choose>
 						</span>
 					</div>
 				</div>

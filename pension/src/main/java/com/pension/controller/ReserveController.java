@@ -202,15 +202,25 @@ public class ReserveController {
 		return "/reserve/confirm";
 	}
 	
+	@RequestMapping(value = "/reserve/confirm", method = RequestMethod.POST)
+	public String confirmPost(RedirectAttributes redirectAtt,
+							  HttpSession session,
+							  ReserveVO reserveVO) {
+		
+		Map<String, String> reserveStatus = reserveService.getReserveStatus(reserveVO);
+		
+		if(reserveStatus == null) {
+			session.setAttribute("error", "해당 예약 정보가 존재하지 않습니다.");
+			return "redirect:/reserve/confirm";
+		} else {
+			redirectAtt.addFlashAttribute("reserveStatus", reserveStatus);
+		}
+		
+		return "redirect:/reserve/status";
+	}
+	
 	@RequestMapping(value = "/reserve/status", method = RequestMethod.GET)
-	public String status(Model model,
-						 ReserveVO reserveVO,
-						 @RequestParam(defaultValue = "none") String room,
-						 @RequestParam(defaultValue = "0") int year,
-						 @RequestParam(defaultValue = "0") int month) {
-		
-		
-		
+	public String status() {
 		return "/reserve/status";
 	}
 }
