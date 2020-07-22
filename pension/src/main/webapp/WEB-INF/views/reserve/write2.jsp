@@ -11,7 +11,7 @@
 <fmt:formatNumber var="day" value="${day }" pattern="00" />
 <fmt:formatNumber var="roomPrice" value="${roomPrice }" type="currency" currencySymbol="" />
 <fmt:formatNumber var="optionPrice" value="${optionPrice }" type="currency" currencySymbol="" />
-<fmt:formatNumber var="totalPrice" value="${totalPrice }" type="currency" currencySymbol="" />
+<fmt:formatNumber var="totalPriceCurrency" value="${totalPrice }" type="currency" currencySymbol="" />
 
 <section>
 	<div class="wrap">
@@ -46,7 +46,7 @@
 						</div>
 						<div>
 							<span class="title">가격</span>
-							<span class="info">객실금액 = ${roomPrice }원 + 옵션추가금액 = ${optionPrice }원 <strong>::</strong> 합계 = <strong>${totalPrice }원</strong></span>
+							<span class="info">객실금액 = ${roomPrice }원 + 옵션추가금액 = ${optionPrice }원 <strong>::</strong> 합계 = <strong>${totalPriceCurrency }원</strong></span>
 						</div>
 					</div>
 				</div>
@@ -104,6 +104,7 @@
 				<input type="hidden" name="adult" value="${adult }">
 				<input type="hidden" name="child" value="${child }">
 				<input type="hidden" name="infant" value="${infant }">
+				<input type="hidden" name="totalPrice" value="${totalPrice }">
 				
 				<c:if test="${not empty paramValues.option }">
 					<c:forEach var="i" begin="0" end="${fn:length(paramValues.option) - 1 }">

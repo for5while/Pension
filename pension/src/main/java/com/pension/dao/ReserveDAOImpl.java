@@ -2,6 +2,7 @@ package com.pension.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -131,5 +132,10 @@ public class ReserveDAOImpl implements ReserveDAO {
 	@Override
 	public void insertReserveStatus(ReserveVO reserveVO) {
 		sqlSession.insert(nameSpace + ".insertReserveStatus", reserveVO);
+	}
+
+	@Override
+	public Map<String, String> getAccountInfo() {
+		return sqlSession.selectOne(nameSpace + ".getAccountInfo");
 	}
 }

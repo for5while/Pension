@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import javax.inject.Inject;
@@ -245,10 +246,6 @@ public class ReserveServiceImpl implements ReserveService {
 			// 이 달의 마지막 날짜를 초과하는 경우
 			if(dayToInt > reserveVO.getLastDay()) {
 				monthToInt += 1;
-				
-				System.out.println("getLastDay() : " + reserveVO.getLastDay());
-				System.out.println("getNight() : " + reserveVO.getNight());
-				
 				dayToInt = dayToInt - reserveVO.getLastDay();
 			}
 			
@@ -270,5 +267,10 @@ public class ReserveServiceImpl implements ReserveService {
 		reserveVO.setCheckInDate(year + "-" + month + "-" + day);
 		
 		reserveDAO.insertReserveStatus(reserveVO);
+	}
+
+	@Override
+	public Map<String, String> getAccountInfo() {
+		return reserveDAO.getAccountInfo();
 	}
 }

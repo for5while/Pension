@@ -147,5 +147,10 @@
 		INTO reservation_status(reserve_no, depositor, price, payment_datetime, is_payment)
 		VALUES(#{reserveNum}, #{customerName}, #{totalPrice}, #{paymentDatetime}, 0)
 	</insert>
+	
+	<select id="getAccountInfo" resultType="hashMap">
+		SELECT bank, holder, number
+		FROM account
+	</select>
 
 </mapper>

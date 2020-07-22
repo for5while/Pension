@@ -1,8 +1,10 @@
 package com.pension.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.pension.service.ReserveService;
 import com.pension.vo.ReserveVO;
@@ -109,7 +112,7 @@ public class ReserveController {
 	}
 	
 	@RequestMapping(value = "/reserve/write2", method = RequestMethod.POST)
-	public String write2Post(Model model,
+	public String write2Post(RedirectAttributes redirectAttr,
 							 @RequestParam(defaultValue = "none") String room,
 							 @RequestParam(defaultValue = "0") int year,
 							 @RequestParam(defaultValue = "0") int month,
@@ -162,17 +165,26 @@ public class ReserveController {
 		
 		reserveService.insertReserveStatus(reserveVO);
 		
-		return "/reserve/complete";
+		// 완료 페이지에 전달
+		Calendar cal = Calendar.getInstance();
+		
+		redirectAttr.addFlashAttribute("totalPrice", totalPrice);
+		redirectAttr.addFlashAttribute("name", name);
+		redirectAttr.addFlashAttribute("phone", phone);
+		redirectAttr.addFlashAttribute("year", cal.get(Calendar.YEAR));
+		redirectAttr.addFlashAttribute("month", cal.get(Calendar.MONTH) + 1);
+		redirectAttr.addFlashAttribute("day", cal.get(Calendar.DAY_OF_MONTH));
+		redirectAttr.addFlashAttribute("hour", cal.get(Calendar.HOUR_OF_DAY) + 1);
+		redirectAttr.addFlashAttribute("minute", cal.get(Calendar.MINUTE));
+		
+		return "redirect:/reserve/complete";
 	}
 	
 	@RequestMapping(value = "/reserve/complete", method = RequestMethod.GET)
-	public String complete(Model model,
-						   ReserveVO reserveVO,
-						   @RequestParam(defaultValue = "none") String room,
-						   @RequestParam(defaultValue = "0") int year,
-						   @RequestParam(defaultValue = "0") int month) {
+	public String complete(Model model) {
+		Map<String, String> accountInfo = reserveService.getAccountInfo();
 		
-		
+		model.addAttribute("account", accountInfo);
 		
 		return "/reserve/complete";
 	}

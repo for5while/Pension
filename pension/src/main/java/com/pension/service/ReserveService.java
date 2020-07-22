@@ -1,6 +1,7 @@
 package com.pension.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.pension.vo.ReserveVO;
 
@@ -16,4 +17,6 @@ public interface ReserveService {
 	public void insertCustomer(String name, String phone);
 	public void insertReserve(ReserveVO reserveVO);
 	public void insertReserveStatus(ReserveVO reserveVO);
+	
+	public Map<String, String> getAccountInfo();
 }

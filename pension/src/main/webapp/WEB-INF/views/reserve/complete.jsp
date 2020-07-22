@@ -6,6 +6,8 @@
 	<div>실시간 예약</div>
 </div>
 
+<fmt:formatNumber var="totalPrice" value="${totalPrice }" type="currency" currencySymbol="" />
+
 <section>
 	<div class="wrap">
 		<div class="write2">
@@ -17,25 +19,25 @@
 				<div class="content">
 					<div>
 						<span class="title">입금 금액</span>
-						<span class="info">350,000원</span>
+						<span class="info">${totalPrice }원</span>
 					</div>
 					<div>
 						<span class="title">입금 계좌</span>
-						<span class="info">국민 123456-00-123456 홍길동</span>
+						<span class="info">${account.bank } ${account.number } ${account.holder }</span>
 					</div>
 					<div>
 						<span class="title">입금 대기 시간</span>
-						<span class="info">2020년 7월 19일 15시 33분까지 입금 (1시간)</span>
+						<span class="info">${year }년 ${month }월 ${day }일 <strong>${hour }시 ${minute }분</strong>까지 입금 <strong>(1시간)</strong></span>
 					</div>
 				</div>
 				<div class="content">
 					<div>
 						<span class="title">예약자 성함</span>
-						<span class="info">홍길동</span>
+						<span class="info">${name }</span>
 					</div>
 					<div>
 						<span class="title">연락처</span>
-						<span class="info">010-1234-5678</span>
+						<span class="info">${phone }</span>
 					</div>
 				</div>
 			</div>
