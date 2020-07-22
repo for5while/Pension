@@ -11,6 +11,10 @@
 
 <section>
 	<div class="wrap">
+		<sec:authorize access="isAuthenticated()">
+			<a class="reserve_management" href="<c:url value='../administrator/index' />">예약관리</a>
+		</sec:authorize>
+		
 		<div class="reserve">
 			<div class="header">
 				<span class="legend">

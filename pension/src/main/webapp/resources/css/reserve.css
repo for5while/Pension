@@ -14,6 +14,8 @@ section .wrap {margin-bottom:0}
 #guide li {padding-left:20px;line-height:18px;font-family:Dotum,'돋움',sans-serif;font-size:11px;letter-spacing:-1px;color:#999;background:url(../img/sprites_guide.gif) 10px -6px no-repeat}
 #guide li span {color:#ff6565}
 
+.reserve_management {width:100px;padding:5px 0;font-size:16px;text-align:center;display:block;margin-bottom:20px;background:#333;color:#FFF}
+
 .reserve {font-family:'NanumSquareRound';border:1px solid #dedede;border-width:0 0 1px 1px;margin-bottom:100px}
 .reserve .material-icons {position:relative;top:-2px}
 .reserve .material-icons.left {float:left}

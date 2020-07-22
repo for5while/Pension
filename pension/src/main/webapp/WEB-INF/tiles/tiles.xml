@@ -14,11 +14,20 @@
         <put-attribute name="tail" value="/WEB-INF/views/layout/tail.jsp" />
     </definition>
     
-    <definition name="/*/*" extends="default-layout">
-        <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+    <definition name="administrator-layout" template="/WEB-INF/views/layout/administrator/default.jsp">
+        <put-attribute name="head" value="/WEB-INF/views/layout/administrator/head.jsp" />
+        <put-attribute name="tail" value="/WEB-INF/views/layout/administrator/tail.jsp" />
     </definition>
     
-    <definition name="/empty/*" extends="empty">
-          <put-attribute name="content" value="/WEB-INF/views/{1}.jsp"></put-attribute>
+    <definition name="/empty/*" extends="empty" >
+          <put-attribute name="content" value="/WEB-INF/views/{1}.jsp" />
+    </definition>
+    
+    <definition name="/administrator/*" extends="administrator-layout">
+        <put-attribute name="content" value="/WEB-INF/views/administrator/{1}.jsp" />
+    </definition>
+    
+    <definition name="/*/*" extends="default-layout">
+        <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
     </definition>
 </tiles-definitions>

@@ -24,4 +24,9 @@ public class AdministratorController {
 		return "/administrator/login";
 	}
 	
+	@RequestMapping(value = "/administrator/index", method = RequestMethod.GET)
+	public String index() {
+		return "/administrator/index";
+	}
+	
 }
