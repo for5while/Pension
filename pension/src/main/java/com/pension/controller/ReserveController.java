@@ -125,31 +125,24 @@ public class ReserveController {
 							 @RequestParam(defaultValue = "0") int year,
 							 @RequestParam(defaultValue = "0") int month,
 							 @RequestParam(defaultValue = "0") int day,
+							 @RequestParam(defaultValue = "0") int lastDay,
+							 @RequestParam(defaultValue = "0", value = "check_in_time") int checkInTime,
 							 @RequestParam(defaultValue = "0") String checkOutDate,
+							 @RequestParam(defaultValue = "0") int stayDate,
 							 @RequestParam(defaultValue = "0") int adult,
 							 @RequestParam(defaultValue = "0") int child,
 							 @RequestParam(defaultValue = "0") int infant,
 							 @RequestParam(defaultValue = "0") List<String> option,
-							 @RequestParam(defaultValue = "0") int stayDate,
-							 
+							 @RequestParam(defaultValue = "") String message,
 							 @RequestParam(defaultValue = "none") String name,
 							 @RequestParam(defaultValue = "none") String phone,
-							 @RequestParam(defaultValue = "0", value = "check_in_time") int checkInTime,
-							 @RequestParam(defaultValue = "") String message,
-							 @RequestParam(defaultValue = "0") int totalPrice,
-							 @RequestParam(defaultValue = "0") int lastDay) {
+							 @RequestParam(defaultValue = "0") int totalPrice) {
 		
 		ReserveVO reserveVO = new ReserveVO();
-		
-		// 고객 정보 등록 (이름, 연락처)
-		reserveVO.setCustomerName(name);
-		reserveVO.setCustomerPhone(phone);
-		
-		reserveService.insertCustomer(name, phone);
-		
-		// 예약 접수 등록
 		String checkInDate = year + "-" + month + "-" + day;
 		
+		reserveVO.setCustomerName(name);
+		reserveVO.setCustomerPhone(phone);
 		reserveVO.setRoomName(room);
 		reserveVO.setCheckInTime(checkInTime);
 		reserveVO.setCheckInDate(checkInDate);
@@ -165,12 +158,15 @@ public class ReserveController {
 		reserveVO.setTotalPrice(totalPrice);
 		reserveVO.setNight(stayDate);
 		reserveVO.setLastDay(lastDay);
+		reserveVO.setPaymentDatetime(new Date(System.currentTimeMillis()));
 		
+		// 고객 정보 등록 (이름, 연락처)
+		reserveService.insertCustomer(name, phone);
+		
+		// 예약 접수 등록
 		reserveService.insertReserve(reserveVO);
 		
 		// 예약 접수 상태 등록
-		reserveVO.setPaymentDatetime(new Date(System.currentTimeMillis()));
-		
 		reserveService.insertReserveStatus(reserveVO);
 		
 		// 완료 페이지에 전달

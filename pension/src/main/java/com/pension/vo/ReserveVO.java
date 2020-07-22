@@ -20,11 +20,9 @@ public class ReserveVO {
 	private int peopleAdult;
 	private int peopleChild;
 	private int peopleInfant;
-	
 	private int customerNum;
 	private String customerName;
 	private String customerPhone;
-	
 	private int reserveNum;
 	private int roomNum;
 	private String roomName;
