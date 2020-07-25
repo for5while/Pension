@@ -5,6 +5,10 @@ public class AdministratorVO {
 	private String id;
 	private String password;
 	
+	private String bank;
+	private String holder;
+	private String accountNumber;
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -22,5 +26,23 @@ public class AdministratorVO {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getBank() {
+		return bank;
+	}
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+	public String getHolder() {
+		return holder;
+	}
+	public void setHolder(String holder) {
+		this.holder = holder;
+	}
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 }

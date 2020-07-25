@@ -9,32 +9,32 @@
 
 			<div class="sidebar-wrapper">
 				<ul class="nav">
-					<li class="nav-item active">
-						<a class="nav-link" href="#0">
+					<li class="nav-item <c:if test='${pageName eq "account" }'>active</c:if>">
+						<a class="nav-link" href="<c:url value='../administrator/account' />">
 							<i class="material-icons">local_atm</i>
 							<p>입금 계좌</p>
 						</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#0">
+					<li class="nav-item <c:if test='${pageName eq "customerList" }'>active</c:if>">
+						<a class="nav-link" href="<c:url value='../administrator/customerList' />">
 							<i class="material-icons">people</i>
 							<p>고객 목록</p>
 						</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#0">
+					<li class="nav-item <c:if test='${pageName eq "reserve" }'>active</c:if>">
+						<a class="nav-link" href="<c:url value='../administrator/reserve' />">
 							<i class="material-icons">dashboard</i>
 							<p>예약 현황</p>
 						</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#0">
+					<li class="nav-item <c:if test='${pageName eq "rooms" }'>active</c:if>">
+						<a class="nav-link" href="<c:url value='../administrator/rooms' />">
 							<i class="material-icons">power</i>
 							<p>호실 관리</p>
 						</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#0">
+					<li class="nav-item <c:if test='${pageName eq "season" }'>active</c:if>">
+						<a class="nav-link" href="<c:url value='../administrator/season' />">
 							<i class="material-icons">stars</i>
 							<p>시즌 등록</p>
 						</a>

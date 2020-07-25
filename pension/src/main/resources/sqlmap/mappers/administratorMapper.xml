@@ -6,7 +6,24 @@
 <mapper namespace="com.pension.sqlmap.mappers.administratorMapper">
 
 	<select id="userCheck">
-		SELECT * FROM administrator WHERE id = #{id} AND password = #{password}
+		SELECT *
+		FROM administrator
+		WHERE id = #{id} AND password = #{password}
 	</select>
+	
+	<select id="getAccountInfo" resultType="com.pension.vo.AdministratorVO">
+		SELECT bank, holder, number accountNumber
+		FROM account
+	</select>
+	
+	<insert id="insertAccountInfo">
+		INSERT INTO account (bank, holder, number)
+		VALUES (#{bank}, #{holder}, #{accountNumber})
+	</insert>
+	
+	<delete id="deleteAccountInfo">
+		DELETE
+		FROM account
+	</delete>
 
 </mapper>

@@ -1,7 +1,20 @@
 @charset "UTF-8";
+@font-face {
+	font-family:'NanumSquareRound';
+	src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+	font-weight:normal;
+	font-style:normal;
+}
+
+a {color:#000;text-decoration:none}
+
+body {font-family:NanumSquareRound !important}
+table {width:100%;background:#FFF}
+table th {border:1px solid #e0e0e0;padding:10px;text-align:center;border-top:2px solid #CCC}
+table td {border:1px solid #e0e0e0;padding:10px;text-align:center;font-size:14px}
 
 input[type=text],
-input[type=password] {width:300px;margin:0 auto;margin-bottom:10px;display:block;border:none !important;border-bottom:1px solid #333 !important;padding:10px}
+input[type=password] {width:300px;margin:0 auto;display:block;border:1px solid #b5b5b5;border-bottom-color:#d4d4d4;border-right-color:#d4d4d4;padding:5px}
 
 #login {text-align:center}
 #login .btn_login {margin-top:15px;width:300px;padding:15px 0;background:#333;color:#FFF}
