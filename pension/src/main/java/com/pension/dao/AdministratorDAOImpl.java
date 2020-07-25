@@ -46,4 +46,34 @@ public class AdministratorDAOImpl implements AdministratorDAO {
 	public void updateReserveStatus(int reserveNo) {
 		sqlSession.update(nameSpace + ".updateReserveStatus", reserveNo);
 	}
+
+	@Override
+	public List<Object> getRoomsList() {
+		return sqlSession.selectList(nameSpace + ".getRoomsList");
+	}
+
+	@Override
+	public void insertRoom(AdministratorVO administratorVO) {
+		sqlSession.insert(nameSpace + ".insertRoom", administratorVO);
+	}
+
+	@Override
+	public List<Object> getRoomsOptionList() {
+		return sqlSession.selectList(nameSpace + ".getRoomsOptionList");
+	}
+
+	@Override
+	public void insertRoomOption(AdministratorVO administratorVO) {
+		sqlSession.insert(nameSpace + ".insertRoomOption", administratorVO);
+	}
+
+	@Override
+	public void deleteRoom(int roomNo) {
+		sqlSession.delete(nameSpace + ".deleteRoom", roomNo);
+	}
+
+	@Override
+	public void deleteRoomOption(int roomOptionNo) {
+		sqlSession.delete(nameSpace + ".deleteRoomOption", roomOptionNo);
+	}
 }

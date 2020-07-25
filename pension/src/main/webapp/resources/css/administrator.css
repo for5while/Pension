@@ -28,3 +28,5 @@ input[type=password] {width:300px;margin:0 auto;display:block;border:1px solid #
 
 a.btn_confirm {background:#00bcd4;color:#FFF;padding:5px}
 a.btn_confirm:hover {background:#333;color:#FFF}
+
+.rooms input[type=text] {width:115px}

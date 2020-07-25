@@ -49,4 +49,41 @@
 		SET is_payment = 1
 		WHERE reserve_no = #{reserveNo}
 	</update>
+	
+	<select id="getRoomsList" resultType="com.pension.vo.AdministratorVO">
+		SELECT
+			name roomName, price roomPrice, price_fri roomFriPrice, price_sat roomSatPrice, price_mid_season roomMidPrice,
+			price_busiest_season roomBusiestPrice, people_adult roomAdult, people_child roomChild, people_infant roomInfant,
+			night roomNight, idx roomNo
+		FROM room
+	</select>
+	
+	<insert id="insertRoom">
+		INSERT INTO room
+		VALUES
+			(0, #{roomName}, #{roomPrice}, #{roomFriPrice}, #{roomSatPrice}, #{roomMidPrice}, #{roomBusiestPrice}, 
+			#{roomAdult}, #{roomChild}, #{roomInfant}, #{roomNight})
+	</insert>
+	
+	<select id="getRoomsOptionList" resultType="com.pension.vo.AdministratorVO">
+		SELECT a.idx roomOptionNo, b.name roomName, a.name roomOptionName, a.price roomOptionPrice
+		FROM room_option a
+		JOIN room b ON a.room_no = b.idx
+		ORDER BY b.name, a.price ASC
+	</select>
+	
+	<insert id="insertRoomOption">
+		INSERT INTO room_option
+		VALUES (0, #{roomNo}, #{roomOptionName}, #{roomOptionPrice})
+	</insert>
+	
+	<delete id="deleteRoom">
+		DELETE FROM room
+		WHERE idx = #{roomNo}
+	</delete>
+	
+	<delete id="deleteRoomOption">
+		DELETE FROM room_option
+		WHERE idx = #{roomOptionNo}
+	</delete>
 </mapper>

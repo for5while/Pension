@@ -27,6 +27,21 @@ public class AdministratorVO {
 	private String paymentDatetime;
 	private int isPayment;
 	
+	private int roomNo;
+	private int roomPrice;
+	private int roomFriPrice;
+	private int roomSatPrice;
+	private int roomMidPrice;
+	private int roomBusiestPrice;
+	private int roomAdult;
+	private int roomChild;
+	private int roomInfant;
+	private int roomNight;
+	
+	private int roomOptionNo;
+	private String roomOptionName;
+	private int roomOptionPrice;
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -158,5 +173,83 @@ public class AdministratorVO {
 	}
 	public void setIsPayment(int isPayment) {
 		this.isPayment = isPayment;
+	}
+	public int getRoomNo() {
+		return roomNo;
+	}
+	public void setRoomNo(int roomNo) {
+		this.roomNo = roomNo;
+	}
+	public int getRoomPrice() {
+		return roomPrice;
+	}
+	public void setRoomPrice(int roomPrice) {
+		this.roomPrice = roomPrice;
+	}
+	public int getRoomFriPrice() {
+		return roomFriPrice;
+	}
+	public void setRoomFriPrice(int roomFriPrice) {
+		this.roomFriPrice = roomFriPrice;
+	}
+	public int getRoomSatPrice() {
+		return roomSatPrice;
+	}
+	public void setRoomSatPrice(int roomSatPrice) {
+		this.roomSatPrice = roomSatPrice;
+	}
+	public int getRoomMidPrice() {
+		return roomMidPrice;
+	}
+	public void setRoomMidPrice(int roomMidPrice) {
+		this.roomMidPrice = roomMidPrice;
+	}
+	public int getRoomBusiestPrice() {
+		return roomBusiestPrice;
+	}
+	public void setRoomBusiestPrice(int roomBusiestPrice) {
+		this.roomBusiestPrice = roomBusiestPrice;
+	}
+	public int getRoomAdult() {
+		return roomAdult;
+	}
+	public void setRoomAdult(int roomAdult) {
+		this.roomAdult = roomAdult;
+	}
+	public int getRoomChild() {
+		return roomChild;
+	}
+	public void setRoomChild(int roomChild) {
+		this.roomChild = roomChild;
+	}
+	public int getRoomInfant() {
+		return roomInfant;
+	}
+	public void setRoomInfant(int roomInfant) {
+		this.roomInfant = roomInfant;
+	}
+	public int getRoomNight() {
+		return roomNight;
+	}
+	public void setRoomNight(int roomNight) {
+		this.roomNight = roomNight;
+	}
+	public int getRoomOptionNo() {
+		return roomOptionNo;
+	}
+	public void setRoomOptionNo(int roomOptionNo) {
+		this.roomOptionNo = roomOptionNo;
+	}
+	public String getRoomOptionName() {
+		return roomOptionName;
+	}
+	public void setRoomOptionName(String roomOptionName) {
+		this.roomOptionName = roomOptionName;
+	}
+	public int getRoomOptionPrice() {
+		return roomOptionPrice;
+	}
+	public void setRoomOptionPrice(int roomOptionPrice) {
+		this.roomOptionPrice = roomOptionPrice;
 	}
 }

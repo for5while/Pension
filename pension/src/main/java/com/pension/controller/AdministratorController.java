@@ -74,6 +74,7 @@ public class AdministratorController {
 		if(isAdmin(session) != null) return isAdmin(session);
 		
 		administratorService.insertAccountInfo(administratorVO);
+		session.setAttribute("message", "계좌 등록 성공!");
 		
 		return "redirect:/administrator/account";
 	}
@@ -84,6 +85,7 @@ public class AdministratorController {
 		if(isAdmin(session) != null) return isAdmin(session);
 		
 		administratorService.deleteAccountInfo();
+		session.setAttribute("message", "계좌 삭제 완료!");
 		
 		return "redirect:/administrator/account";
 	}
@@ -123,6 +125,7 @@ public class AdministratorController {
 		if(isAdmin(session) != null) return isAdmin(session);
 		
 		administratorService.updateReserveStatus(reserveNo);
+		session.setAttribute("message", reserveNo + "번 예약 확정 완료!");
 
 		return "redirect:/administrator/reserve";
 	}
@@ -133,9 +136,62 @@ public class AdministratorController {
 		
 		if(isAdmin(session) != null) return isAdmin(session);
 		
+		List<Object> roomsList = administratorService.getRoomsList();
+		List<Object> roomsOptionList = administratorService.getRoomsOptionList();
+		
+		model.addAttribute("roomsList", roomsList);
+		model.addAttribute("roomsOptionList", roomsOptionList);
 		model.addAttribute("pageName", "rooms");
 		
 		return "/administrator/rooms";
+	}
+	
+	@RequestMapping(value = "/administrator/roomInsert", method = RequestMethod.POST)
+	public String roomInsert(AdministratorVO administratorVO,
+							 HttpSession session) {
+		
+		if(isAdmin(session) != null) return isAdmin(session);
+		
+		administratorService.insertRoom(administratorVO);
+		session.setAttribute("message", "호실 등록 성공!");
+
+		return "redirect:/administrator/rooms";
+	}
+	
+	@RequestMapping(value = "/administrator/roomDelete", method = RequestMethod.GET)
+	public String roomDelete(@RequestParam int roomNo,
+							 HttpSession session) {
+		
+		if(isAdmin(session) != null) return isAdmin(session);
+		
+		administratorService.deleteRoom(roomNo);
+		session.setAttribute("message", "호실 삭제 완료!");
+		
+		return "redirect:/administrator/rooms";
+	}
+	
+	@RequestMapping(value = "/administrator/roomOptionInsert", method = RequestMethod.POST)
+	public String roomOptionInsert(AdministratorVO administratorVO,
+								   HttpSession session) {
+		
+		if(isAdmin(session) != null) return isAdmin(session);
+		
+		administratorService.insertRoomOption(administratorVO);
+		session.setAttribute("message", "호실 옵션 등록 성공!");
+
+		return "redirect:/administrator/rooms";
+	}
+	
+	@RequestMapping(value = "/administrator/roomOptionDelete", method = RequestMethod.GET)
+	public String roomOptionDelete(@RequestParam int roomOptionNo,
+							 	   HttpSession session) {
+		
+		if(isAdmin(session) != null) return isAdmin(session);
+		
+		administratorService.deleteRoomOption(roomOptionNo);
+		session.setAttribute("message", "호실 옵션 삭제 완료!");
+		
+		return "redirect:/administrator/rooms";
 	}
 	
 	@RequestMapping(value = "/administrator/season", method = RequestMethod.GET)

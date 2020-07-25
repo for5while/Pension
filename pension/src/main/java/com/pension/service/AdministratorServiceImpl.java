@@ -44,4 +44,34 @@ public class AdministratorServiceImpl implements AdministratorService {
 	public void updateReserveStatus(int reserveNo) {
 		administratorDAO.updateReserveStatus(reserveNo);
 	}
+
+	@Override
+	public List<Object> getRoomsList() {
+		return administratorDAO.getRoomsList();
+	}
+
+	@Override
+	public void insertRoom(AdministratorVO administratorVO) {
+		administratorDAO.insertRoom(administratorVO);
+	}
+
+	@Override
+	public List<Object> getRoomsOptionList() {
+		return administratorDAO.getRoomsOptionList();
+	}
+
+	@Override
+	public void insertRoomOption(AdministratorVO administratorVO) {
+		administratorDAO.insertRoomOption(administratorVO);
+	}
+
+	@Override
+	public void deleteRoom(int roomNo) {
+		administratorDAO.deleteRoom(roomNo);
+	}
+
+	@Override
+	public void deleteRoomOption(int roomOptionNo) {
+		administratorDAO.deleteRoomOption(roomOptionNo);
+	}
 }
