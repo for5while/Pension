@@ -18,10 +18,13 @@ input[type=text],
 input[type=password] {width:300px;margin:0 auto;display:block;border:1px solid #b5b5b5;border-bottom-color:#d4d4d4;border-right-color:#d4d4d4;padding:5px}
 
 #guide {margin:15px 0;padding:20px;background:#FFF;border:1px solid #DDD;user-select:none}
-#guide .word {font-size:13px;font-weight:bold;padding-left:20px;background:url(../img/sprites_guide.gif) 0 -27px no-repeat }
+#guide .word {font-size:13px;font-weight:bold;padding-left:20px;background:url(../img/sprites_guide.gif) 0 -24px no-repeat }
 #guide ul {padding-top:8px}
 #guide li {padding-left:20px;line-height:18px;font-family:Dotum,'돋움',sans-serif;font-size:11px;letter-spacing:-1px;color:#999;background:url(../img/sprites_guide.gif) 10px -6px no-repeat}
 #guide li span {color:#ff6565}
 
 #login {text-align:center}
 #login .btn_login {margin-top:15px;width:300px;padding:15px 0;background:#333;color:#FFF}
+
+a.btn_confirm {background:#00bcd4;color:#FFF;padding:5px}
+a.btn_confirm:hover {background:#333;color:#FFF}

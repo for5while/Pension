@@ -31,4 +31,22 @@
 		FROM customer
 		ORDER BY idx DESC
 	</select>
+	
+	<select id="getReserveList" resultType="com.pension.vo.AdministratorVO">
+		SELECT
+			a.idx reserveNo, b.name roomName, a.check_in_time checkInTime, a.check_in_datetime checkInDate, 
+			a.check_out_datetime checkOutDate, a.people_adult adult, a.people_child child, a.people_infant infant, 
+			a.options `option`, a.message message, c.price price, c.payment_datetime paymentDatetime,
+			c.depositor customerName, c.is_payment isPayment
+		FROM reservation a
+		JOIN room b ON a.room_no = b.idx
+		JOIN reservation_status c ON a.idx = c.reserve_no
+		ORDER BY a.idx DESC
+	</select>
+	
+	<update id="updateReserveStatus">
+		UPDATE reservation_status
+		SET is_payment = 1
+		WHERE reserve_no = #{reserveNo}
+	</update>
 </mapper>

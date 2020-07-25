@@ -34,4 +34,14 @@ public class AdministratorServiceImpl implements AdministratorService {
 	public List<String> getCustomerList() {
 		return administratorDAO.getCustomerList();
 	}
+
+	@Override
+	public List<Object> getReserveList() {
+		return administratorDAO.getReserveList();
+	}
+
+	@Override
+	public void updateReserveStatus(int reserveNo) {
+		administratorDAO.updateReserveStatus(reserveNo);
+	}
 }

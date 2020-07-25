@@ -108,9 +108,23 @@ public class AdministratorController {
 		
 		if(isAdmin(session) != null) return isAdmin(session);
 		
+		List<Object> reserveList = administratorService.getReserveList();
+
+		model.addAttribute("reserveList", reserveList);
 		model.addAttribute("pageName", "reserve");
 		
 		return "/administrator/reserve";
+	}
+	
+	@RequestMapping(value = "/administrator/reserveComplete", method = RequestMethod.GET)
+	public String reserveComplete(@RequestParam int reserveNo,
+								  HttpSession session) {
+		
+		if(isAdmin(session) != null) return isAdmin(session);
+		
+		administratorService.updateReserveStatus(reserveNo);
+
+		return "redirect:/administrator/reserve";
 	}
 	
 	@RequestMapping(value = "/administrator/rooms", method = RequestMethod.GET)

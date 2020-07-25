@@ -10,4 +10,7 @@ public interface AdministratorDAO {
 	public void deleteAccountInfo();
 	
 	public List<String> getCustomerList();
+	
+	public List<Object> getReserveList();
+	public void updateReserveStatus(int reserveNo);
 }

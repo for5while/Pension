@@ -36,4 +36,14 @@ public class AdministratorDAOImpl implements AdministratorDAO {
 	public List<String> getCustomerList() {
 		return sqlSession.selectList(nameSpace + ".getCustomerList");
 	}
+
+	@Override
+	public List<Object> getReserveList() {
+		return sqlSession.selectList(nameSpace + ".getReserveList");
+	}
+
+	@Override
+	public void updateReserveStatus(int reserveNo) {
+		sqlSession.update(nameSpace + ".updateReserveStatus", reserveNo);
+	}
 }
