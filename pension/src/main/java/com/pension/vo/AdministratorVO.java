@@ -9,6 +9,10 @@ public class AdministratorVO {
 	private String holder;
 	private String accountNumber;
 	
+	private String customerNo;
+	private String customerName;
+	private String customerPhone;
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -44,5 +48,23 @@ public class AdministratorVO {
 	}
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
+	}
+	public String getCustomerNo() {
+		return customerNo;
+	}
+	public void setCustomerNo(String customerNo) {
+		this.customerNo = customerNo;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public String getCustomerPhone() {
+		return customerPhone;
+	}
+	public void setCustomerPhone(String customerPhone) {
+		this.customerPhone = customerPhone;
 	}
 }

@@ -26,4 +26,9 @@
 		FROM account
 	</delete>
 
+	<select id="getCustomerList" resultType="com.pension.vo.AdministratorVO">
+		SELECT idx customerNo, name customerName, phone customerPhone
+		FROM customer
+		ORDER BY idx DESC
+	</select>
 </mapper>

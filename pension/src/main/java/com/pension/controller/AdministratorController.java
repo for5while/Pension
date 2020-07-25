@@ -1,5 +1,7 @@
 package com.pension.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -92,6 +94,9 @@ public class AdministratorController {
 		
 		if(isAdmin(session) != null) return isAdmin(session);
 		
+		List<String> customerList = administratorService.getCustomerList();
+		
+		model.addAttribute("customerList", customerList);
 		model.addAttribute("pageName", "customerList");
 		
 		return "/administrator/customerList";

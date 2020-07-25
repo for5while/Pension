@@ -1,5 +1,7 @@
 package com.pension.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -28,5 +30,10 @@ public class AdministratorDAOImpl implements AdministratorDAO {
 	@Override
 	public void deleteAccountInfo() {
 		sqlSession.delete(nameSpace + ".deleteAccountInfo");
+	}
+
+	@Override
+	public List<String> getCustomerList() {
+		return sqlSession.selectList(nameSpace + ".getCustomerList");
 	}
 }

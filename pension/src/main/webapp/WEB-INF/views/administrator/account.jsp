@@ -40,5 +40,13 @@
 				</form>
 			</c:otherwise>
 		</c:choose>
+		
+		<div id="guide">
+			<p class="word">반드시 읽어보세요.</p>
+			<ul>
+				<li>입금 계좌는 <span>총 1개만 등록</span>하실 수 있습니다.</li>
+				<li>등록된 계좌 정보는 고객이 펜션 예약을 접수 완료하면 안내 페이지에서 출력됩니다.</li>
+			</ul>
+		</div>
 	</div>
 </div>

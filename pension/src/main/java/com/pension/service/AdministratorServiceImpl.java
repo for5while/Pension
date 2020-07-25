@@ -1,5 +1,7 @@
 package com.pension.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -26,5 +28,10 @@ public class AdministratorServiceImpl implements AdministratorService {
 	@Override
 	public void deleteAccountInfo() {
 		administratorDAO.deleteAccountInfo();
+	}
+
+	@Override
+	public List<String> getCustomerList() {
+		return administratorDAO.getCustomerList();
 	}
 }
