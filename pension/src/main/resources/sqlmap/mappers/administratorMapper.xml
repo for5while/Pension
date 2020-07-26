@@ -86,4 +86,19 @@
 		DELETE FROM room_option
 		WHERE idx = #{roomOptionNo}
 	</delete>
+	
+	<select id="getSeasonList" resultType="com.pension.vo.AdministratorVO">
+		SELECT idx seasonNo, mid midDate, busiest busiestDate
+		FROM season
+	</select>
+	
+	<insert id="insertSeason">
+		INSERT INTO season
+		VALUES (0, #{midDate}, #{busiestDate})
+	</insert>
+	
+	<delete id="deleteSeason">
+		DELETE FROM season
+		WHERE idx = #{seasonNo}
+	</delete>
 </mapper>

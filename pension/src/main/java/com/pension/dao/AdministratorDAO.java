@@ -20,4 +20,8 @@ public interface AdministratorDAO {
 	public List<Object> getRoomsOptionList();
 	public void insertRoomOption(AdministratorVO administratorVO);
 	public void deleteRoomOption(int roomOptionNo);
+	
+	public List<Object> getSeasonList();
+	public void insertSeason(AdministratorVO administratorVO);
+	public void deleteSeason(int seasonNo);
 }

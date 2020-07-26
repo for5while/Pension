@@ -200,9 +200,36 @@ public class AdministratorController {
 		
 		if(isAdmin(session) != null) return isAdmin(session);
 		
+		List<Object> seasons = administratorService.getSeasonList();
+		
+		model.addAttribute("seasonList", seasons);
 		model.addAttribute("pageName", "season");
 		
 		return "/administrator/season";
+	}
+	
+	@RequestMapping(value = "/administrator/seasonInsert", method = RequestMethod.POST)
+	public String seasonInsert(AdministratorVO administratorVO,
+							   HttpSession session) {
+		
+		if(isAdmin(session) != null) return isAdmin(session);
+		
+		administratorService.insertSeason(administratorVO);
+		session.setAttribute("message", "시즌 등록 성공!");
+
+		return "redirect:/administrator/season";
+	}
+	
+	@RequestMapping(value = "/administrator/seasonDelete", method = RequestMethod.GET)
+	public String seasonDelete(@RequestParam int seasonNo,
+							   HttpSession session) {
+		
+		if(isAdmin(session) != null) return isAdmin(session);
+		
+		administratorService.deleteSeason(seasonNo);
+		session.setAttribute("message", "시즌 삭제 완료!");
+
+		return "redirect:/administrator/season";
 	}
 	
 }

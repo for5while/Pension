@@ -42,6 +42,16 @@ public class AdministratorVO {
 	private String roomOptionName;
 	private int roomOptionPrice;
 	
+	private int seasonNo;
+	private String midYear;
+	private String midMonth;
+	private String midDay;
+	private String midDate;
+	private String busiestYear;
+	private String busiestMonth;
+	private String busiestDay;
+	private String busiestDate;
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -251,5 +261,59 @@ public class AdministratorVO {
 	}
 	public void setRoomOptionPrice(int roomOptionPrice) {
 		this.roomOptionPrice = roomOptionPrice;
+	}
+	public String getMidDate() {
+		return midDate;
+	}
+	public void setMidDate(String midDate) {
+		this.midDate = midDate;
+	}
+	public String getBusiestDate() {
+		return busiestDate;
+	}
+	public void setBusiestDate(String busiestDate) {
+		this.busiestDate = busiestDate;
+	}
+	public int getSeasonNo() {
+		return seasonNo;
+	}
+	public void setSeasonNo(int seasonNo) {
+		this.seasonNo = seasonNo;
+	}
+	public String getMidYear() {
+		return midYear;
+	}
+	public void setMidYear(String midYear) {
+		this.midYear = midYear;
+	}
+	public String getMidMonth() {
+		return midMonth;
+	}
+	public void setMidMonth(String midMonth) {
+		this.midMonth = midMonth;
+	}
+	public String getMidDay() {
+		return midDay;
+	}
+	public void setMidDay(String midDay) {
+		this.midDay = midDay;
+	}
+	public String getBusiestYear() {
+		return busiestYear;
+	}
+	public void setBusiestYear(String busiestYear) {
+		this.busiestYear = busiestYear;
+	}
+	public String getBusiestMonth() {
+		return busiestMonth;
+	}
+	public void setBusiestMonth(String busiestMonth) {
+		this.busiestMonth = busiestMonth;
+	}
+	public String getBusiestDay() {
+		return busiestDay;
+	}
+	public void setBusiestDay(String busiestDay) {
+		this.busiestDay = busiestDay;
 	}
 }

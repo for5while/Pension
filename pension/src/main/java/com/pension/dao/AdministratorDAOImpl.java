@@ -76,4 +76,19 @@ public class AdministratorDAOImpl implements AdministratorDAO {
 	public void deleteRoomOption(int roomOptionNo) {
 		sqlSession.delete(nameSpace + ".deleteRoomOption", roomOptionNo);
 	}
+
+	@Override
+	public List<Object> getSeasonList() {
+		return sqlSession.selectList(nameSpace + ".getSeasonList");
+	}
+
+	@Override
+	public void insertSeason(AdministratorVO administratorVO) {
+		sqlSession.insert(nameSpace + ".insertSeason", administratorVO);
+	}
+
+	@Override
+	public void deleteSeason(int seasonNo) {
+		sqlSession.delete(nameSpace + ".deleteSeason", seasonNo);
+	}
 }

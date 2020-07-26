@@ -74,4 +74,39 @@ public class AdministratorServiceImpl implements AdministratorService {
 	public void deleteRoomOption(int roomOptionNo) {
 		administratorDAO.deleteRoomOption(roomOptionNo);
 	}
+
+	@Override
+	public List<Object> getSeasonList() {
+		return administratorDAO.getSeasonList();
+	}
+
+	@Override
+	public void insertSeason(AdministratorVO administratorVO) {
+		String midYear = administratorVO.getMidYear();
+		String midMonth = administratorVO.getMidMonth();
+		String midDay = administratorVO.getMidDay();
+		
+		String busiestYear = administratorVO.getBusiestYear();
+		String busiestMonth = administratorVO.getBusiestMonth();
+		String busiestDay = administratorVO.getBusiestDay();
+		
+		if(midYear == "" || midMonth == "" || midDay == "") {
+			administratorVO.setMidDate(null);
+		} else {
+			administratorVO.setMidDate(midYear + "-" + midMonth + "-" + midDay);
+		}
+		
+		if(busiestYear == "" || busiestMonth == "" || busiestDay == "") {
+			administratorVO.setBusiestDate(null);
+		} else {
+			administratorVO.setBusiestDate(busiestYear + "-" + busiestMonth + "-" + busiestDay);
+		}
+		
+		administratorDAO.insertSeason(administratorVO);
+	}
+
+	@Override
+	public void deleteSeason(int seasonNo) {
+		administratorDAO.deleteSeason(seasonNo);
+	}
 }
