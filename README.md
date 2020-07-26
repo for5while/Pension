@@ -1,11 +1,11 @@
 ## 링크
-##### 포트폴리오 PPT (PDF 형식) : [https://drive.google.com/file/d/1qMRuTP47XiZqXmYhKIhbwrHhJOsPXi0c/view](https://drive.google.com/file/d/1qMRuTP47XiZqXmYhKIhbwrHhJOsPXi0c/view)
-##### 사이트 주소 : [http://nightpension.ga](http://nightpension.ga)
-
-## 사이트 관리자 계정 정보
-##### ID : admin
-##### PASSWORD : 131313
-
+포트폴리오 PPT (PDF 형식) : [https://drive.google.com/file/d/1qMRuTP47XiZqXmYhKIhbwrHhJOsPXi0c/view](https://drive.google.com/file/d/1qMRuTP47XiZqXmYhKIhbwrHhJOsPXi0c/view)<br>
+사이트 주소 : [http://nightpension.ga](http://nightpension.ga)
+<br>
+<br>
+사이트 관리자의 계정 정보는 포트폴리오 PPT 링크의 '관리자 모드'에 포함되어 있습니다.
+<br>
+<br>
 ## 겪었던 문제들과 해결 방법
 #### Spring Security
 
