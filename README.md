@@ -1,10 +1,12 @@
 ## 링크
-#### 포트폴리오 PPT (PDF 형식) : https://drive.google.com/file/d/1qMRuTP47XiZqXmYhKIhbwrHhJOsPXi0c/view
-#### 사이트 주소 : http://nightpension.ga
+##### 포트폴리오 PPT (PDF 형식) : [https://drive.google.com/file/d/1qMRuTP47XiZqXmYhKIhbwrHhJOsPXi0c/view](https://drive.google.com/file/d/1qMRuTP47XiZqXmYhKIhbwrHhJOsPXi0c/view)
+##### 사이트 주소 : [http://nightpension.ga](http://nightpension.ga)
 
-<br>
+## 사이트 관리자 계정 정보
+##### ID : admin
+##### PASSWORD : 131313
 
-## 겪었던 문제들과 해결 방법 🔧
+## 겪었던 문제들과 해결 방법
 #### Spring Security
 
 문제 1. 서버 구동 시 security-context 스키마의 네임 스페이스를 읽지 못하였고, servlet-context 정상 로딩 불가<br>
