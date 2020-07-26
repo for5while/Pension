@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>깊어지는 밤 펜션</title><!-- http://remotepension.ga -->
+		<title>깊어지는 밤 펜션</title>
 		
 		<link href="<c:url value='/resources/css/layout.css' />" rel="stylesheet" type="text/css" />
 		<link href="<c:url value='/resources/css/page.css' />" rel="stylesheet" type="text/css" />
