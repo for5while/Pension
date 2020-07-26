@@ -1,5 +1,5 @@
 ## 링크
-포트폴리오 PPT (PDF 형식) : [https://drive.google.com/file/d/12ZSNYdmTHYO5lPXleseXOQxKCUXMD7Vv/view?usp=sharing](https://drive.google.com/file/d/12ZSNYdmTHYO5lPXleseXOQxKCUXMD7Vv/view?usp=sharing)<br>
+포트폴리오 PPT (PDF 형식) : [바로가기](https://drive.google.com/file/d/12ZSNYdmTHYO5lPXleseXOQxKCUXMD7Vv/view?usp=sharing)<br>
 사이트 주소 : [http://3.129.75.119:8080/pension](http://3.129.75.119:8080/pension)
 <br>
 <br>
